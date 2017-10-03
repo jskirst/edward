@@ -27,6 +27,8 @@ class Step < ActiveRecord::Base
 
     def initialize(text, answers)
       @items = text.split(/\{(\{[a-z_]+\})\}/)
+                   .map { |i| i.split(/([\.,])/) }
+                   .flatten
       @answers = answers
     end
 
