@@ -18,10 +18,10 @@ Feature: Steps API
       "text": "My first name is {{?user_first_name}}, and my last name is {{?user_last_name}}. Generally I prefer {{?user_style_preference}} wines.",
       "parts": [
         { "type": "text", "content": "My first name is " },
-        { "type": "short_text", "name": "user_first_name" },
+        { "type": "short_text", "name": "user_first_name", "characters": 8 },
         { "type": "text", "content": "," },
         { "type": "text", "content": " and my last name is " },
-        { "type": "short_text", "name": "user_last_name" },
+        { "type": "short_text", "name": "user_last_name", "characters": 10 },
         { "type": "text", "content": "." },
         { "type": "text", "content": " Generally I prefer " },
         {
@@ -57,7 +57,8 @@ Feature: Steps API
         { "type": "text", "content": "Hello " },
         { "type": "text", "content": "Giles" },
         { "type": "text", "content": "," },
-        { "type": "text", "content": " would you like any recommendations?\n" },
+        { "type": "text", "content": " would you like any recommendations?" },
+        { "type": "text", "content": "\n" },
         {
           "type": "select",
           "name": "user_desires_recommendations",

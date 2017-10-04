@@ -9,6 +9,7 @@ class Answer < ActiveRecord::Base
         type: input_type
       }
       hsh.merge!(options: Options.new(options).to_a) if options.any?
+      hsh.merge!(characters: characters) if characters
       hsh
     end
   end
