@@ -1,7 +1,5 @@
 class Step < ActiveRecord::Base
-  def self.match(data)
-    all.find { |step| step.match?(data) }
-  end
+  belongs_to :workflow
 
   def match?(data)
     URI.unescape(conditions)

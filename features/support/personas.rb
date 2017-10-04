@@ -1,5 +1,6 @@
 Cucumber::Persona.define "Ragnar Lothbrok" do
-  Step.create!(text: "My first name is {{?user_first_name}}, and my last name is {{?user_last_name}}. Generally I prefer {{?user_style_preference}} wines.",
+  wf = Workflow.create!(token: 'abc')
+  wf.steps.create!(text: "My first name is {{?user_first_name}}, and my last name is {{?user_last_name}}. Generally I prefer {{?user_style_preference}} wines.",
                conditions: URI.escape("user_first_name=&user_last_name=&user_style_preference="))
   Answer.create!(name: "user_first_name", input_type: "short_text")
   Answer.create!(name: "user_last_name", input_type: "short_text")
@@ -10,7 +11,7 @@ Cucumber::Persona.define "Ragnar Lothbrok" do
                    { value: "white", text: "white" }
                  ])
 
-  Step.create!(text: "Hello {{@user_first_name}}, would you like any recommendations?\n{{?user_desires_recommendations}}",
+  wf.steps.create!(text: "Hello {{@user_first_name}}, would you like any recommendations?\n{{?user_desires_recommendations}}",
                conditions: URI.escape("user_desires_recommendations="))
   Answer.create!(name: "user_desires_recommendations",
                  input_type: "select",
@@ -19,10 +20,10 @@ Cucumber::Persona.define "Ragnar Lothbrok" do
                    { value: "no", text: "No" }
                  ])
 
-  Step.create!(text: "I recommend the {{@recommendation}}.",
+  wf.steps.create!(text: "I recommend the {{@recommendation}}.",
                callout: "http://www.callout.com/api/fact?user_first_name={{user_first_name}}",
                conditions: URI.escape("user_style_preference=white&user_desires_recommendations=yes"))
 
-  Step.create!("text": "I recommend the Pinot Noir.",
+  wf.steps.create!("text": "I recommend the Pinot Noir.",
                 conditions: URI.escape("user_style_preference=red&user_desires_recommendations=yes"))
 end

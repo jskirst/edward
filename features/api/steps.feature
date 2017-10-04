@@ -5,7 +5,7 @@ Feature: Steps API
     And I send and accept JSON
 
   Scenario: Create inline step with multiple answers
-    When I send a POST request to "/api/steps/" with the following:
+    When I send a POST request to "/api/workflows/abc/steps" with the following:
     """
     {
       "facts": {}
@@ -38,7 +38,7 @@ Feature: Steps API
     """
 
   Scenario: Create inline step with a single option answer and a user fact
-    When I send a POST request to "/api/steps/" with the following:
+    When I send a POST request to "/api/workflows/abc/steps" with the following:
     """
     {
       "facts": {
@@ -71,7 +71,7 @@ Feature: Steps API
     """
 
   Scenario: Create step with no answers
-    When I send a POST request to "/api/steps/" with the following:
+    When I send a POST request to "/api/workflows/abc/steps" with the following:
     """
     {
       "facts": {

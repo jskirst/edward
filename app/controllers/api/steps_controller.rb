@@ -1,9 +1,13 @@
 class Api::StepsController < ApplicationController
   def create
-    render json: Step.match(fact_params).to_h(fact_params.to_h)
+    render json: workflow.match(fact_params).to_h(fact_params.to_h)
   end
 
   private
+
+  def workflow
+    @workflow ||= Workflow.find_by(token: params[:workflow_id])
+  end
 
   def fact_params
     params[:facts].present? ? params.require(:facts).permit! : {}
