@@ -20,7 +20,7 @@ Cucumber::Persona.define "Ragnar Lothbrok" do
                    { value: "no", text: "No" }
                  ])
 
-  wf.steps.create!(text: "I recommend the {{@recommendation}}.",
+  wf.steps.create!(text: "Really? Splendid! Superb. I recommend the {{@recommendation}}.",
                callout: "http://www.callout.com/api/fact?user_first_name={{user_first_name}}",
                conditions: URI.escape("user_style_preference=white&user_desires_recommendations=yes"))
 

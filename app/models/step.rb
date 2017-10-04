@@ -36,9 +36,11 @@ class Step < ActiveRecord::Base
 
     def items
       @items ||= text.split(/\{(\{[\?@a-z_]+\})\}/)
-                   .map { |i| i.split(/^([\.,])/) }
+                   .map { |i| i.split(/^([\.\?!,])/) }
                    .flatten
-                   .select { |i| i.present? }
+                   .map { |i| i.split(/([^\.\?,!\{\}]+[\.\?!,]+)/) }
+                   .flatten
+                   .select { |i| i != '' }
     end
 
     def to_a

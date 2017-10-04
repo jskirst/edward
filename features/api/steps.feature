@@ -70,7 +70,7 @@ Feature: Steps API
     }
     """
 
-  Scenario: Create step with no answers
+  Scenario: Create step with no answers and lots of breaking punctuation
     When I send a POST request to "/api/workflows/abc/steps" with the following:
     """
     {
@@ -86,9 +86,12 @@ Feature: Steps API
     And the JSON response should be:
     """
     {
-      "text": "I recommend the {{@recommendation}}.",
+      "text": "Really? Splendid! Superb. I recommend the {{@recommendation}}.",
       "parts": [
-        { "type": "text", "content": "I recommend the " },
+        { "type": "text", "content": "Really?" },
+        { "type": "text", "content": " Splendid!" },
+        { "type": "text", "content": " Superb." },
+        { "type": "text", "content": " I recommend the " },
         { "type": "text", "content": "Russian River Chardonnay" },
         { "type": "text", "content": "." }
       ]
