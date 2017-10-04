@@ -6,9 +6,9 @@ class Answer < ActiveRecord::Base
   def to_h
     @hsh ||= begin
       hsh = {
-        input_type: input_type
+        type: input_type
       }
-      hsh.merge!(options: Options.new(options).to_h) if options.any?
+      hsh.merge!(options: Options.new(options).to_a) if options.any?
       hsh
     end
   end
@@ -21,11 +21,7 @@ class Answer < ActiveRecord::Base
     end
 
     def to_a
-      options.map { |o| [o.name, o.value] }
-    end
-
-    def to_h
-      Hash[*to_a.flatten]
+      options.map(&:to_h)
     end
   end
 end

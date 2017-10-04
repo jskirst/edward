@@ -16,19 +16,12 @@ Feature: Steps API
     """
     {
       "text": "My first name is {{user_first_name}}, and my last name is {{user_last_name}}.",
-      "answers": {
-        "user_first_name": {
-          "input_type": "short_text"
-        },
-        "user_last_name": {
-          "input_type": "short_text"
-        }
-      },
       "parts": [
         { "type": "text", "content": "My first name is " },
-        { "type": "answer", "answer": { "name": "user_first_name", "input_type": "short_text" } },
-        { "type": "text", "content": ", and my last name is " },
-        { "type": "answer", "answer": { "name": "user_last_name", "input_type": "short_text" } },
+        { "type": "short_text", "name": "user_first_name" },
+        { "type": "text", "content": "," },
+        { "type": "text", "content": " and my last name is " },
+        { "type": "short_text", "name": "user_last_name" },
         { "type": "text", "content": "." }
       ]
     }
@@ -49,29 +42,18 @@ Feature: Steps API
     """
     {
       "text": "Generally I prefer {{user_style_preference}} wines.",
-      "answers": {
-        "user_style_preference": {
-          "input_type": "select",
-          "options": {
-            "red": "red",
-            "white": "white"
-          }
-        }
-      },
       "parts": [
         { "type": "text", "content": "Generally I prefer " },
         {
-          "type": "answer",
-          "answer": {
-            "name": "user_style_preference",
-            "input_type": "select",
-            "options": {
-              "red": "red",
-              "white": "white"
-            }
-          }
+          "type": "select",
+          "name": "user_style_preference",
+          "options": [
+            { "text": "red", "value": "red" },
+            { "text": "white", "value": "white" }
+          ]
         },
-        { "type": "text", "content": " wines." }
+        { "type": "text", "content": " wines" },
+        { "type": "text", "content": "." }
       ]
     }
     """
@@ -91,31 +73,18 @@ Feature: Steps API
     And the JSON response should be:
     """
     {
-    "text": "Would you like any white wine recommendations?\n{{user_desires_recommendations}}",
-      "answers": {
-        "user_desires_recommendations": {
-          "input_type": "select",
-          "options": {
-            "yes": "Yes",
-            "no": "No"
-          }
-        }
-      },
+      "text": "Would you like any white wine recommendations?\n{{user_desires_recommendations}}",
       "parts": [
         { "type": "text", "content": "Would you like any white wine recommendations?\n" },
         {
-          "type": "answer",
-          "answer": {
-            "name": "user_desires_recommendations",
-            "input_type": "select",
-            "options": {
-              "yes": "Yes",
-              "no": "No"
-            }
-          }
+          "type": "select",
+          "name": "user_desires_recommendations",
+          "options": [
+            { "text": "Yes", "value": "yes" },
+            { "text": "No", "value": "no" }
+          ]
         }
       ]
-
     }
     """
 
@@ -137,7 +106,8 @@ Feature: Steps API
     {
       "text": "I recommend the Russian River Chardonnay.",
       "parts": [
-        { "type": "text", "content": "I recommend the Russian River Chardonnay." }
+        { "type": "text", "content": "I recommend the Russian River Chardonnay" },
+        { "type": "text", "content": "." }
       ]
     }
     """

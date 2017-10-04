@@ -9,8 +9,8 @@ Cucumber::Persona.define "Ragnar Lothbrok" do
   Answer.create!(name: "user_style_preference",
                  input_type: "select",
                  options_attributes: [
-                   { name: "red", value: "red" },
-                   { name: "white", value: "white" }
+                   { value: "red", text: "red" },
+                   { value: "white", text: "white" }
                  ])
 
   Step.create!(text: "Would you like any white wine recommendations?\n{{user_desires_recommendations}}",
@@ -18,8 +18,8 @@ Cucumber::Persona.define "Ragnar Lothbrok" do
   Answer.create!(name: "user_desires_recommendations",
                  input_type: "select",
                  options_attributes: [
-                   { name: "yes", value: "Yes" },
-                   { name: "no", value: "No" }
+                   { value: "yes", text: "Yes" },
+                   { value: "no", text: "No" }
                  ])
 
   Step.create!("text": "I recommend the Russian River Chardonnay.",

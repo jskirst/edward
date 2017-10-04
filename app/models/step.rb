@@ -13,7 +13,6 @@ class Step < ActiveRecord::Base
   def to_h
     @hsh ||= begin
       hsh = { text: text }
-      hsh[:answers] = answers unless answers.empty?
       hsh[:parts] = Parts.new(text, answers).to_a
       hsh
     end
@@ -29,6 +28,7 @@ class Step < ActiveRecord::Base
       @items = text.split(/\{(\{[a-z_]+\})\}/)
                    .map { |i| i.split(/([\.,])/) }
                    .flatten
+                   .select { |i| i.present? }
       @answers = answers
     end
 
@@ -36,15 +36,9 @@ class Step < ActiveRecord::Base
       @items.map do |item|
         if item.starts_with?("{") && item.ends_with?("}")
           item.gsub!(/[\{\}]/, '')
-          {
-            type: "answer",
-            answer: @answers[item].merge(name: item)
-          }
+          @answers[item].merge(name: item)
         else
-          {
-            type: "text",
-            content: item
-          }
+          { type: "text", content: item }
         end
       end
     end
