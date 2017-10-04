@@ -1,9 +1,13 @@
 class Api::StepsController < ApplicationController
   def create
-    render json: Step.match(params[:facts]).to_h(params[:facts])
+    render json: Step.match(fact_params).to_h(fact_params.to_h)
   end
 
   private
+
+  def fact_params
+    params[:facts].present? ? params.require(:facts).permit! : {}
+  end
 
   def step
     @step = {}

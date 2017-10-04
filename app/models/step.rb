@@ -24,7 +24,7 @@ class Step < ActiveRecord::Base
   end
 
   def facts
-    @facts ||= Facts.new(text, @user_facts).to_h
+    @facts ||= Facts.new(text, @user_facts, callout).to_h
   end
 
   class Parts
@@ -64,20 +64,24 @@ class Step < ActiveRecord::Base
   end
 
   class Facts
-    attr_reader :text, :user_facts
+    attr_reader :text, :user_facts, :callout
 
-    def initialize(text, user_facts)
+    def initialize(text, user_facts, callout)
       @text = text
       @user_facts = user_facts
+      @callout = callout
+      @callout_facts = make_callout if callout
     end
 
     def to_h
-      user_facts.merge({ "user_first_name": "Giles" })
+      user_facts.merge(@callout_facts || {})
     end
 
     def make_callout
       return unless callout
-      HTTParty.get(callout)
+      url_template = Liquid::Template.parse(callout)
+      url = url_template.render(user_facts)
+      HTTParty.get(url).parsed_response.symbolize_keys
     end
   end
 

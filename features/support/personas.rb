@@ -19,8 +19,9 @@ Cucumber::Persona.define "Ragnar Lothbrok" do
                    { value: "no", text: "No" }
                  ])
 
-  Step.create!("text": "I recommend the Russian River Chardonnay.",
-                conditions: URI.escape("user_style_preference=white&user_desires_recommendations=yes"))
+  Step.create!(text: "I recommend the {{@recommendation}}.",
+               callout: "http://www.callout.com/api/fact?user_first_name={{user_first_name}}",
+               conditions: URI.escape("user_style_preference=white&user_desires_recommendations=yes"))
 
   Step.create!("text": "I recommend the Pinot Noir.",
                 conditions: URI.escape("user_style_preference=red&user_desires_recommendations=yes"))

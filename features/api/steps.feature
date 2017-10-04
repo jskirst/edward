@@ -86,9 +86,11 @@ Feature: Steps API
     And the JSON response should be:
     """
     {
-      "text": "I recommend the Russian River Chardonnay.",
+      "text": "I recommend the {{@recommendation}}.",
       "parts": [
-        { "type": "text", "content": "I recommend the Russian River Chardonnay." }
+        { "type": "text", "content": "I recommend the " },
+        { "type": "text", "content": "Russian River Chardonnay" },
+        { "type": "text", "content": "." }
       ]
     }
     """

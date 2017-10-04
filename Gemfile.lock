@@ -105,10 +105,13 @@ GEM
       activesupport (>= 4.2.0)
     hashdiff (0.3.4)
     hirb (0.7.3)
+    httparty (0.15.6)
+      multi_xml (>= 0.5.2)
     i18n (0.8.6)
     json (2.1.0)
     jsonpath (0.8.5)
       multi_json
+    liquid (4.0.0)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.6)
@@ -121,6 +124,7 @@ GEM
     minitest (5.10.3)
     multi_json (1.12.2)
     multi_test (0.1.2)
+    multi_xml (0.6.0)
     nio4r (2.1.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
@@ -232,6 +236,8 @@ DEPENDENCIES
   database_cleaner
   dotenv-rails
   factory_girl_rails
+  httparty
+  liquid
   pg
   pry-byebug
   puma (~> 3.7)

@@ -7,7 +7,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 gem 'rails', '~> 5.1.4'
 gem 'pg'
 gem 'puma', '~> 3.7'
@@ -15,6 +14,8 @@ gem 'rack-cors'
 gem 'dotenv-rails'
 gem 'cucumber-persona'
 gem 'rack-cors', require: 'rack/cors'
+gem 'httparty'
+gem 'liquid'
 
 group :test do
   gem 'capybara', '~> 2.13.0'
