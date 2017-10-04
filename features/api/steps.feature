@@ -15,35 +15,15 @@ Feature: Steps API
     And the JSON response should be:
     """
     {
-      "text": "My first name is {{user_first_name}}, and my last name is {{user_last_name}}.",
+      "text": "My first name is {{?user_first_name}}, and my last name is {{?user_last_name}}. Generally I prefer {{?user_style_preference}} wines.",
       "parts": [
         { "type": "text", "content": "My first name is " },
         { "type": "short_text", "name": "user_first_name" },
         { "type": "text", "content": "," },
         { "type": "text", "content": " and my last name is " },
         { "type": "short_text", "name": "user_last_name" },
-        { "type": "text", "content": "." }
-      ]
-    }
-    """
-
-  Scenario: Create inline step with a single inline option answer
-    When I send a POST request to "/api/steps/" with the following:
-    """
-    {
-      "facts": {
-        "user_first_name": "Giles",
-        "user_last_name": "Rotherbrok"
-      }
-    }
-    """
-    Then the response status should be "200"
-    And the JSON response should be:
-    """
-    {
-      "text": "Generally I prefer {{user_style_preference}} wines.",
-      "parts": [
-        { "type": "text", "content": "Generally I prefer " },
+        { "type": "text", "content": "." },
+        { "type": "text", "content": " Generally I prefer " },
         {
           "type": "select",
           "name": "user_style_preference",
@@ -57,7 +37,7 @@ Feature: Steps API
     }
     """
 
-  Scenario: Create inline step with a single option answer
+  Scenario: Create inline step with a single option answer and a user fact
     When I send a POST request to "/api/steps/" with the following:
     """
     {
@@ -72,9 +52,12 @@ Feature: Steps API
     And the JSON response should be:
     """
     {
-      "text": "Would you like any white wine recommendations?\n{{user_desires_recommendations}}",
+      "text": "Hello {{@user_first_name}}, would you like any recommendations?\n{{?user_desires_recommendations}}",
       "parts": [
-        { "type": "text", "content": "Would you like any white wine recommendations?\n" },
+        { "type": "text", "content": "Hello " },
+        { "type": "text", "content": "Giles" },
+        { "type": "text", "content": "," },
+        { "type": "text", "content": " would you like any recommendations?\n" },
         {
           "type": "select",
           "name": "user_desires_recommendations",

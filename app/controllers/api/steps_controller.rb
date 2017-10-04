@@ -1,6 +1,6 @@
 class Api::StepsController < ApplicationController
   def create
-    render json: Step.match(params[:facts]).to_h
+    render json: Step.match(params[:facts]).to_h(params[:facts])
   end
 
   private
