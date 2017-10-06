@@ -1,9 +1,10 @@
 Cucumber::Persona.define "Ragnar Lothbrok" do
   wf = Workflow.create!(token: 'abc')
-  wf.steps.create!(text: "My first name is {{?user_first_name}}, and my last name is {{?user_last_name}}. Generally I prefer {{?user_style_preference}} wines.",
+  wf.steps.create!(text: "My first name is {{?user_first_name}}, and my last name is {{?user_last_name}}, and I am {{?user_age}} years old. Generally I prefer {{?user_style_preference}} wines.",
                conditions: URI.escape("user_first_name=&user_last_name=&user_style_preference="))
-  Answer.create!(name: "user_first_name", input_type: "short_text", characters: 8)
-  Answer.create!(name: "user_last_name", input_type: "short_text", characters: 10)
+  Answer.create!(name: "user_first_name", input_type: "short_text", characters: 8, text_field_type: 'text')
+  Answer.create!(name: "user_last_name", input_type: "short_text", characters: 10, text_field_type: 'text')
+  Answer.create!(name: "user_age", input_type: "short_text", characters: 3, text_field_type: 'number')
   Answer.create!(name: "user_style_preference",
                  input_type: "select",
                  options_attributes: [

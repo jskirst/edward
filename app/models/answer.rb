@@ -10,6 +10,7 @@ class Answer < ActiveRecord::Base
       }
       hsh.merge!(options: Options.new(options).to_a) if options.any?
       hsh.merge!(characters: characters) if characters
+      hsh.merge!(text_field_type: text_field_type) if text_field_type
       hsh
     end
   end
