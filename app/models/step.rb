@@ -59,6 +59,8 @@ class Step < ActiveRecord::Base
             raise 'Unknown item type: ' + item_type
           end
         else
+          item[0] = "&nbsp" if item[0] == " "
+          item[-1] = "&nbsp" if item[-1] == " "
           { type: "text", content: item }
         end
       end
