@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171006165303) do
+ActiveRecord::Schema.define(version: 20171012180049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20171006165303) do
     t.datetime "updated_at", null: false
     t.integer "characters"
     t.string "text_field_type"
+    t.string "mask"
   end
 
   create_table "answers_options", force: :cascade do |t|
