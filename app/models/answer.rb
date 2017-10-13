@@ -1,5 +1,6 @@
 class Answer < ActiveRecord::Base
   has_and_belongs_to_many :options
+  belongs_to :workflow
 
   accepts_nested_attributes_for :options
 

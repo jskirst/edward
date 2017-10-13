@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171012180049) do
+ActiveRecord::Schema.define(version: 20171013014736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20171012180049) do
     t.integer "characters"
     t.string "text_field_type"
     t.string "mask"
+    t.integer "workflow_id"
+    t.index ["workflow_id", "name"], name: "index_answers_on_workflow_id_and_name", unique: true
   end
 
   create_table "answers_options", force: :cascade do |t|
@@ -46,6 +48,7 @@ ActiveRecord::Schema.define(version: 20171012180049) do
     t.integer "workflow_id"
     t.string "callout_method"
     t.string "callout_body"
+    t.index ["workflow_id", "text"], name: "index_steps_on_workflow_id_and_text", unique: true
   end
 
   create_table "workflows", force: :cascade do |t|
