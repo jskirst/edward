@@ -74,6 +74,30 @@ Feature: Steps API
     }
     """
 
+  Scenario: Conditions can process a negative value
+    When I send a POST request to "/api/workflows/abc/steps" with the following:
+    """
+    {
+      "facts": {
+        "user_first_name": "Giles",
+        "user_last_name": "Rotherbrok",
+        "user_style_preference": "white",
+        "user_desires_recommendations": "no"
+      }
+    }
+    """
+    Then the response status should be "200"
+    And the JSON response should be:
+    """
+    {
+      "text": "Well, fine then.",
+      "parts": [
+        { "type": "text", "content": "Well," },
+        { "type": "text", "content": " fine then." }
+      ]
+    }
+    """
+
   Scenario: Create step with no answers and lots of breaking punctuation
     When I send a POST request to "/api/workflows/abc/steps" with the following:
     """

@@ -5,7 +5,13 @@ class Step < ActiveRecord::Base
     URI.unescape(conditions)
        .split("&")
        .map { |c| c.split("=") }
-       .all? { |key,value| data[key] == value }
+       .all? do |key,value|
+         if key.ends_with?("!")
+           data[key[0..-2]] != value
+         else
+          data[key] == value
+         end
+       end
   end
 
   def to_h(user_facts)
