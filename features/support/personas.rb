@@ -43,6 +43,14 @@ Cucumber::Persona.define "New Line" do
                conditions: "newline=")
 end
 
+Cucumber::Persona.define "Callto Action" do
+  wf = Workflow.find_or_create_by(token: 'cta')
+  Step.create!(workflow: wf,
+               text: "Hello.",
+               conditions: "",
+               cta: "Would you like to play a game?")
+end
+
 
 Cucumber::Persona.define "Arthur Dent" do
   wf = Workflow.find_or_create_by(token: 'auth')

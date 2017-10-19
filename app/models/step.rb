@@ -18,6 +18,7 @@ class Step < ActiveRecord::Base
     @user_facts = user_facts
     @hsh ||= begin
       hsh = { text: text }
+      hsh.merge!(cta: cta) if cta
       hsh[:parts] = Parts.new(text, answers, facts).to_a
       hsh
     end
