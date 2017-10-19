@@ -18,7 +18,7 @@ Feature: Simulated authentication and introduction flow
       "text": "Texting a token to your phone.\n{{?user_phone_number}}",
       "parts": [
         { "type": "text", "content": "Texting a token to your phone." },
-        { "type": "text", "content": "\n" },
+        { "type": "newline" },
         { "type": "short_text", "name": "user_phone_number", "text_field_type": "number", "characters": 11, "mask": "(###) ###-####" }
       ]
     }
@@ -40,7 +40,7 @@ Feature: Simulated authentication and introduction flow
       "text": "Please enter the 4 digit number that was just sent to your phone.\n{{?user_confirmation_token}}",
       "parts": [
         { "type": "text", "content": "Please enter the 4 digit number that was just sent to your phone." },
-        { "type": "text", "content": "\n" },
+        { "type": "newline" },
         { "type": "short_text", "name": "user_confirmation_token", "text_field_type": "number", "characters": 6, "mask": "####" }
       ]
     }

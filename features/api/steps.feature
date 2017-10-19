@@ -61,7 +61,7 @@ Feature: Steps API
         { "type": "text", "content": "Giles" },
         { "type": "text", "content": "," },
         { "type": "text", "content": " would you like any recommendations?" },
-        { "type": "text", "content": "\n" },
+        { "type": "newline" },
         {
           "type": "select",
           "name": "user_desires_recommendations",
@@ -147,7 +147,7 @@ Feature: Steps API
         { "type": "text", "content": "I recommend the " },
         { "type": "text", "content": "Pinot Noir" },
         { "type": "text", "content": "." },
-        { "type": "text", "content": "\n" },
+        { "type": "newline" },
         { "type": "hidden", "name": "recommendation", "value": "Pinot Noir" }
       ]
     }

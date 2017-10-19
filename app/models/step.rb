@@ -66,6 +66,8 @@ class Step < ActiveRecord::Base
           else
             raise 'Unknown item type: ' + item_type
           end
+        elsif item == "\n"
+          { type: "newline" }
         else
           { type: "text", content: item }
         end
