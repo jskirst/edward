@@ -36,6 +36,13 @@ Cucumber::Persona.define "Ragnar Lothbrok" do
   Answer.create!(workflow: wf, name: "recommendation", input_type: "hidden")
 end
 
+Cucumber::Persona.define "New Line" do
+  wf = Workflow.find_or_create_by(token: 'newline')
+  Step.create!(workflow: wf,
+               text: "Texting a token\nto your phone.",
+               conditions: "newline=")
+end
+
 
 Cucumber::Persona.define "Arthur Dent" do
   wf = Workflow.find_or_create_by(token: 'auth')

@@ -42,11 +42,13 @@ class Step < ActiveRecord::Base
 
     def items
       @items ||= text.split(/\{(\{[\?@a-z_]+\})\}/)
-                   .map { |i| i.split(/^([\.\?!,])/) }
+                   .map { |i| i.split(/^([\.\?!,])/) } # split out punctuation that occurs at the beginning
                    .flatten
-                   .map { |i| i.split(/([^\.\?,!\{\}]+[\.\?!,]+)/) }
+                   .map { |i| i.split(/([^\.\?,!\{\}]+[\.\?!,]+)/) } # split out punctuation that does not occur at beginning but is not inside liquid block
                    .flatten
-                   .select { |i| i != '' }
+                   .map { |i| i.split(/(\n)/) } # split out new lines
+                   .flatten
+                   .select { |i| i != '' } # remove empty items
     end
 
     def to_a
