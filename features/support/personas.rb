@@ -1,6 +1,6 @@
 Cucumber::Persona.define "Ragnar Lothbrok" do
   wf = Workflow.create!(token: 'abc')
-  wf.steps.create!(text: "My first name is {{?user_first_name}}, and my last name is {{?user_last_name}}, and I am {{?user_age}} years old. Generally I prefer {{?user_style_preference}} wines.",
+  wf.steps.create!(token: "intro", text: "My first name is {{?user_first_name}}, and my last name is {{?user_last_name}}, and I am {{?user_age}} years old. Generally I prefer {{?user_style_preference}} wines.",
                conditions: URI.escape("user_first_name=&user_last_name=&user_style_preference="))
   Answer.create!(workflow: wf, name: "user_first_name", input_type: "short_text", characters: 8, text_field_type: 'text')
   Answer.create!(workflow: wf, name: "user_last_name", input_type: "short_text", characters: 10, text_field_type: 'text')
@@ -13,7 +13,8 @@ Cucumber::Persona.define "Ragnar Lothbrok" do
                  ])
 
   wf.steps.create!(text: "Hello {{@user_first_name}}, would you like any recommendations?\n{{?user_desires_recommendations}}",
-               conditions: URI.escape("user_desires_recommendations="))
+                   token: "hello",
+                   conditions: URI.escape("user_first_name!=&user_desires_recommendations="))
   Answer.create!(workflow: wf, name: "user_desires_recommendations",
                  input_type: "select",
                  options_attributes: [
@@ -21,14 +22,18 @@ Cucumber::Persona.define "Ragnar Lothbrok" do
                    { value: "no", text: "No" }
                  ])
 
-  wf.steps.create!(text: "Well, fine then.", conditions: "user_desires_recommendations!=yes")
+  wf.steps.create!(token: "finethen",
+                   text: "Well, fine then.",
+                   conditions: "user_desires_recommendations!=yes")
 
-  wf.steps.create!(text: "Really? Splendid! Superb. I recommend the {{@recommendation}}.",
+  wf.steps.create!(token: "really",
+                   text: "Really? Splendid! Superb. I recommend the {{@recommendation}}.",
                    callout: "http://www.callout.com/api/fact?user_first_name={{user_first_name}}",
                    callout_method: "get",
                    conditions: URI.escape("user_style_preference=white&user_desires_recommendations=yes"))
 
-  wf.steps.create!(text: "I recommend the {{@recommendation}}.\n{{?recommendation}}",
+  wf.steps.create!(token: "recommendation",
+                   text: "I recommend the {{@recommendation}}.\n{{?recommendation}}",
                    callout: "http://www.callout.com/api/fact?user_first_name={{user_first_name}}",
                    callout_method: "post",
                    callout_body: "preference={{user_style_preference}}",
@@ -38,14 +43,16 @@ end
 
 Cucumber::Persona.define "New Line" do
   wf = Workflow.find_or_create_by(token: 'newline')
-  Step.create!(workflow: wf,
+  Step.create!(token: "newline",
+               workflow: wf,
                text: "Texting a token\nto your phone.",
                conditions: "newline=")
 end
 
 Cucumber::Persona.define "Callto Action" do
   wf = Workflow.find_or_create_by(token: 'cta')
-  Step.create!(workflow: wf,
+  Step.create!(token: "hello",
+               workflow: wf,
                text: "Hello.",
                conditions: "",
                cta: "Would you like to play a game?")
@@ -55,7 +62,8 @@ end
 Cucumber::Persona.define "Arthur Dent" do
   wf = Workflow.find_or_create_by(token: 'auth')
 
-  Step.create!(workflow: wf,
+  Step.create!(token: "phone",
+               workflow: wf,
                text: "Texting a token to your phone.\n{{?user_phone_number}}",
                conditions: "user_phone_number=")
   Answer.create!(workflow: wf,
@@ -66,6 +74,7 @@ Cucumber::Persona.define "Arthur Dent" do
                  mask: "(###) ###-####")
 
   Step.create!(workflow: wf,
+               token: "confirmation",
                text: "Please enter the 4 digit number that was just sent to your phone.\n{{?user_confirmation_token}}",
                conditions: "user_phone_number!=&user_confirmation_token=",
                callout: "https://www.callout.com/api/v1/users",
@@ -79,6 +88,7 @@ Cucumber::Persona.define "Arthur Dent" do
                  mask: "####")
 
   Step.create!(workflow: wf,
+               token: "thankyou",
                text: "Thank you! Welcome to the application.{{?auth_token}}",
                conditions: "user_confirmation_token!=&auth_token=",
                callout: "https://www.callout.com/api/v1/sessions",

@@ -1,5 +1,11 @@
+require 'securerandom'
+
 class Step < ActiveRecord::Base
   belongs_to :workflow
+
+  before_save do
+    self.token ||= SecureRandom::uuid
+  end
 
   def match?(data)
     URI.unescape(conditions)
@@ -18,6 +24,7 @@ class Step < ActiveRecord::Base
     @user_facts = user_facts
     @hsh ||= begin
       hsh = { text: text }
+      hsh.merge!(token: token) if token
       hsh.merge!(cta: cta) if cta
       hsh[:parts] = Parts.new(text, answers, facts).to_a
       hsh

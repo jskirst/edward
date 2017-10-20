@@ -15,6 +15,7 @@ Feature: Steps API
     And the JSON response should be:
     """
     {
+      "token": "intro",
       "text": "My first name is {{?user_first_name}}, and my last name is {{?user_last_name}}, and I am {{?user_age}} years old. Generally I prefer {{?user_style_preference}} wines.",
       "parts": [
         { "type": "text", "content": "My first name is " },
@@ -55,6 +56,7 @@ Feature: Steps API
     And the JSON response should be:
     """
     {
+      "token": "hello",
       "text": "Hello {{@user_first_name}}, would you like any recommendations?\n{{?user_desires_recommendations}}",
       "parts": [
         { "type": "text", "content": "Hello " },
@@ -90,6 +92,7 @@ Feature: Steps API
     And the JSON response should be:
     """
     {
+      "token": "finethen",
       "text": "Well, fine then.",
       "parts": [
         { "type": "text", "content": "Well," },
@@ -114,6 +117,7 @@ Feature: Steps API
     And the JSON response should be:
     """
     {
+      "token": "really",
       "text": "Really? Splendid! Superb. I recommend the {{@recommendation}}.",
       "parts": [
         { "type": "text", "content": "Really?" },
@@ -142,6 +146,7 @@ Feature: Steps API
     And the JSON response should be:
     """
     {
+      "token": "recommendation",
       "text": "I recommend the {{@recommendation}}.\n{{?recommendation}}",
       "parts": [
         { "type": "text", "content": "I recommend the " },

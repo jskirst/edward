@@ -15,6 +15,7 @@ Feature: New lines
     And the JSON response should be:
     """
     {
+      "token": "newline",
       "text": "Texting a token\nto your phone.",
       "parts": [
         { "type": "text", "content": "Texting a token" },

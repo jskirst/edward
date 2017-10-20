@@ -15,6 +15,7 @@ Feature: Call-to-Action (CTA)
     And the JSON response should be:
     """
     {
+      "token": "hello",
       "text": "Hello.",
       "cta": "Would you like to play a game?",
       "parts": [

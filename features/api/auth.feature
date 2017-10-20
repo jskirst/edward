@@ -15,6 +15,7 @@ Feature: Simulated authentication and introduction flow
     And the JSON response should be:
     """
     {
+      "token": "phone",
       "text": "Texting a token to your phone.\n{{?user_phone_number}}",
       "parts": [
         { "type": "text", "content": "Texting a token to your phone." },
@@ -37,6 +38,7 @@ Feature: Simulated authentication and introduction flow
     And the JSON response should be:
     """
     {
+      "token": "confirmation",
       "text": "Please enter the 4 digit number that was just sent to your phone.\n{{?user_confirmation_token}}",
       "parts": [
         { "type": "text", "content": "Please enter the 4 digit number that was just sent to your phone." },
@@ -60,6 +62,7 @@ Feature: Simulated authentication and introduction flow
     And the JSON response should be:
     """
     {
+      "token": "thankyou",
       "text": "Thank you! Welcome to the application.{{?auth_token}}",
       "parts": [
         { "type": "text", "content": "Thank you!" },
