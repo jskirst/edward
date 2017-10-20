@@ -26,6 +26,8 @@ class Step < ActiveRecord::Base
       hsh = { text: text }
       hsh.merge!(token: token) if token
       hsh.merge!(cta: cta) if cta
+      hsh.merge!(cta_class: cta_class) if cta_class
+      hsh.merge!(cta_href: cta_href) if cta_href
       hsh[:parts] = Parts.new(text, answers, facts).to_a
       hsh
     end

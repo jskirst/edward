@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171020010112) do
+ActiveRecord::Schema.define(version: 20171020135253) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 20171020010112) do
     t.string "callout_body"
     t.string "cta"
     t.string "token"
+    t.string "cta_class"
+    t.text "cta_href"
     t.index ["workflow_id", "text"], name: "index_steps_on_workflow_id_and_text", unique: true
   end
 

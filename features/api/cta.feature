@@ -18,6 +18,8 @@ Feature: Call-to-Action (CTA)
       "token": "hello",
       "text": "Hello.",
       "cta": "Would you like to play a game?",
+      "cta_class": "this that",
+      "cta_href": "https://www.example.com",
       "parts": [
         { "type": "text", "content": "Hello." }
       ]
