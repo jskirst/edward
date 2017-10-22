@@ -51,7 +51,7 @@ class Step < ActiveRecord::Base
     end
 
     def items
-      @items ||= text.split(/\{(\{[\?@a-z_1-9]+\})\}/)
+      @items ||= text.split(/\{(\{[?@][^{]+\})\}/)
                    .map { |i| i.split(/^([\.\?!,])/) } # split out punctuation that occurs at the beginning
                    .flatten
                    .map { |i| i.split(/([^\.\?,!\{\}]+[\.\?!,]+)/) } # split out punctuation that does not occur at beginning but is not inside liquid block
@@ -68,10 +68,11 @@ class Step < ActiveRecord::Base
           item_type = item[0]
           item[0] = ''
           if item_type == '?'
-            answer = answers[item]
-            raise AnswerNotFound, "No Answer found for name: #{item}" unless answer
-            answer.merge!(name: item)
-            answer.merge!(value: facts[item]) if facts[item]
+            name = item.split('=')[0]
+            answer = answers[name]
+            raise AnswerNotFound, "No Answer found for name: #{name}" unless answer
+            answer.merge!(name: name)
+            answer.merge!(value: facts[name]) if facts[name]
             answer
           elsif item_type == '@'
             { type: "text", content: facts[item] }
@@ -132,13 +133,17 @@ class Step < ActiveRecord::Base
     end
 
     def items
-      @items ||= text.scan(/\{\{\?([a-z_1-9]+)\}\}/)
+      @items ||= text.scan(/\{\{\?([^}]+)\}\}/)
                    .flatten
                    .map { |name| find_by_name(name) }
     end
 
     def find_by_name(name)
+      name_and_value = name.split('=')
+      name = name_and_value[0]
+      value = name_and_value[1]&.gsub("'", '')
       answer = Answer.find_by(name: name)
+      answer.default_value = value if value
       return answer if answer
       raise AnswerNotFound, "No Answer found for name: #{name}"
     end
