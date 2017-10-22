@@ -14,6 +14,7 @@ class Answer < ActiveRecord::Base
       hsh.merge!(text_field_type: text_field_type) if text_field_type
       hsh.merge!(mask: mask) if mask
       value = user_facts[name]
+      hsh.merge!(value: default_value) if default_value
       hsh.merge!(value: value) if value
       hsh
     end

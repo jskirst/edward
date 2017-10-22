@@ -87,6 +87,19 @@ Cucumber::Persona.define "Alpha Numeric" do
                 workflow: wf)
 end
 
+Cucumber::Persona.define "Default Value" do
+  wf = Workflow.find_or_create_by(token: 'defaultvalue')
+  Step.create!(token: "defaultvalue",
+               workflow: wf,
+               text: "Default.{{?default_value}}",
+               conditions: "default_value=")
+  Answer.create(name: 'default_value',
+                input_type: 'hidden',
+                default_value: 'true',
+                workflow: wf)
+end
+
+
 Cucumber::Persona.define "Arthur Dent" do
   wf = Workflow.find_or_create_by(token: 'auth')
 
