@@ -16,6 +16,7 @@ gem 'cucumber-persona'
 gem 'rack-cors', require: 'rack/cors'
 gem 'httparty'
 gem 'liquid'
+gem 'jsonpath'
 
 group :test do
   gem 'capybara', '~> 2.13.0'

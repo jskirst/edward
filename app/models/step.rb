@@ -51,12 +51,12 @@ class Step < ActiveRecord::Base
     end
 
     def items
-      @items ||= text.split(/\{(\{[?@][^{]+\})\}/)
-                   .map { |i| i.split(/^([\.\?!,])/) } # split out punctuation that occurs at the beginning
+      @items ||= text.split(/\{(\{[?@\$][^{]+\})\}/)
+                   .map { |i| i.start_with?("{") ? [i] : i.split(/^([\.\?!,])/) } # split out punctuation that occurs at the beginning
                    .flatten
-                   .map { |i| i.split(/([^\.\?,!\{\}]+[\.\?!,]+)/) } # split out punctuation that does not occur at beginning but is not inside liquid block
+                   .map { |i| i.start_with?("{") ? [i] : i.split(/([^\.\?,!\{\}]+[\.\?!,]+)/) } # split out punctuation that does not occur at beginning but is not inside liquid block
                    .flatten
-                   .map { |i| i.split(/(\n)/) } # split out new lines
+                   .map { |i| i.start_with?("{") ? [i] : i.split(/(\n)/) } # split out new lines
                    .flatten
                    .select { |i| i != '' } # remove empty items
     end
@@ -76,6 +76,9 @@ class Step < ActiveRecord::Base
             answer
           elsif item_type == '@'
             { type: "text", content: facts[item] }
+          elsif item_type == '$'
+            path = JsonPath.new('$'+item)
+            { type: "text", content: path.on(facts.to_json).first }
           else
             raise 'Unknown item type: ' + item_type
           end

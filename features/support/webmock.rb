@@ -17,3 +17,7 @@ stub_request(:post, "https://www.callout.com/api/v1/users")
 
 stub_request(:post, "https://www.callout.com/api/v1/sessions")
   .to_return(status: 200, body: '{ "auth_token": "1234" }', headers: { 'Content-Type' => "application/json" })
+
+stub_request(:get, "https://www.weather.com")
+  .to_return(status: 200, body: '{"weather": { "days": [ { "summary": "sunny" } ] } }', headers: { 'Content-Type' => "application/json" })
+

@@ -76,6 +76,16 @@ Cucumber::Persona.define "Nosuch Answer" do
                conditions: "thing=")
 end
 
+Cucumber::Persona.define "Json Path" do
+  wf = Workflow.find_or_create_by(token: 'jsonpath')
+  Step.create!(token: "jsonpath",
+               workflow: wf,
+               text: "Today's weather is {{$.weather.days[0].summary}}.",
+               callout: 'https://www.weather.com',
+               callout_method: 'get',
+               conditions: "thing=")
+end
+
 Cucumber::Persona.define "Alpha Numeric" do
   wf = Workflow.find_or_create_by(token: 'alphanumeric')
   Step.create!(token: "alphanumeric",

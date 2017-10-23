@@ -237,6 +237,7 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails
   httparty
+  jsonpath
   liquid
   pg
   pry-byebug
