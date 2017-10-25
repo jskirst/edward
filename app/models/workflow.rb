@@ -3,8 +3,12 @@ class Workflow < ActiveRecord::Base
   has_many :steps
   has_many :answers
 
-  before_create do
+  validates :name, presence: true
+  validates :token, presence: true
+
+  before_validation do
     self.token ||= SecureRandom.hex(8)
+    self.name ||= token
   end
 
   def match(data)
@@ -19,5 +23,9 @@ class Workflow < ActiveRecord::Base
     {
       token: token
     }
+  end
+
+  def to_param
+    token
   end
 end

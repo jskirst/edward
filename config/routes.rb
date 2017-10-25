@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  namespace :api do
+  namespace :api, defaults: { format: :json }  do
     resources :workflows, param: :token do
       resources :steps, param: :token
       resources :answers, param: :name
@@ -11,4 +12,9 @@ Rails.application.routes.draw do
       resources :options
     end
   end
+
+  resource :dashboard
+  resources :workflows, param: :token
+
+  root to: 'workflows#index'
 end

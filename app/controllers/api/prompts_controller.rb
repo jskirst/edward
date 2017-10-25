@@ -1,6 +1,6 @@
 require 'prompt'
 
-class Api::PromptsController < ApplicationController
+class Api::PromptsController < ActionController::API
   before_action :load_workflow
 
   rescue_from Workflow::UnmatchableDataError do |_e|

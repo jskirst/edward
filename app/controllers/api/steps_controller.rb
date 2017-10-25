@@ -1,5 +1,6 @@
 class Api::StepsController < Api::ApplicationController
   include Rapido::Controller
+  include Rapido::ApiController
 
   owner_class :workflow
   owner_lookup_param :workflow_token

@@ -1,5 +1,6 @@
 class Api::WorkflowsController < Api::ApplicationController
   include Rapido::Controller
+  include Rapido::ApiController
 
   owner_class :account
   owner_lookup_param :api_key

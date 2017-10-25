@@ -1,0 +1,5 @@
+= link_to "New Workflow", new_workflow_path
+
+ol
+  - @resource_collection.each do |workflow|
+    li= link_to workflow.name, workflow
