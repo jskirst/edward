@@ -17,10 +17,12 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'httparty'
 gem 'liquid'
 gem 'jsonpath'
+gem 'rails-rapido'
+gem 'kaminari'
 
 group :test do
   gem 'capybara', '~> 2.13.0'
-  gem 'cucumber-api-steps'
+  gem 'cucumber-api-steps', github: 'jayzes/cucumber-api-steps'
   gem 'cucumber-rails', require: false
   gem 'cucumber_factory'
   gem 'database_cleaner'

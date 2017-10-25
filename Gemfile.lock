@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/jayzes/cucumber-api-steps.git
+  revision: 190d0930c0d7e9578460ab3730e5bc58d3b72f5a
+  specs:
+    cucumber-api-steps (0.13)
+      cucumber (>= 2.0.2)
+      jsonpath (>= 0.1.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -65,10 +73,6 @@ GEM
       gherkin (~> 4.0)
       multi_json (>= 1.7.5, < 2.0)
       multi_test (>= 0.1.2)
-    cucumber-api-steps (0.13)
-      cucumber (>= 1.2.1)
-      jsonpath (>= 0.1.2)
-      rspec (>= 2.12.0)
     cucumber-core (1.5.0)
       gherkin (~> 4.0)
     cucumber-persona (0.1.0)
@@ -111,6 +115,18 @@ GEM
     json (2.1.0)
     jsonpath (0.8.5)
       multi_json
+    kaminari (1.1.1)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.1.1)
+      kaminari-activerecord (= 1.1.1)
+      kaminari-core (= 1.1.1)
+    kaminari-actionview (1.1.1)
+      actionview
+      kaminari-core (= 1.1.1)
+    kaminari-activerecord (1.1.1)
+      activerecord
+      kaminari-core (= 1.1.1)
+    kaminari-core (1.1.1)
     liquid (4.0.0)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
@@ -158,6 +174,8 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails-rapido (1.0.0)
+      kaminari (~> 1.1)
     railties (5.1.4)
       actionpack (= 5.1.4)
       activesupport (= 5.1.4)
@@ -165,10 +183,6 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (12.1.0)
-    rspec (3.6.0)
-      rspec-core (~> 3.6.0)
-      rspec-expectations (~> 3.6.0)
-      rspec-mocks (~> 3.6.0)
     rspec-core (3.6.0)
       rspec-support (~> 3.6.0)
     rspec-expectations (3.6.0)
@@ -229,7 +243,7 @@ PLATFORMS
 
 DEPENDENCIES
   capybara (~> 2.13.0)
-  cucumber-api-steps
+  cucumber-api-steps!
   cucumber-persona
   cucumber-rails
   cucumber_factory
@@ -238,12 +252,14 @@ DEPENDENCIES
   factory_girl_rails
   httparty
   jsonpath
+  kaminari
   liquid
   pg
   pry-byebug
   puma (~> 3.7)
   rack-cors
   rails (~> 5.1.4)
+  rails-rapido
   rspec-rails
   selenium-webdriver
   simplecov

@@ -1,4 +1,5 @@
 class Workflow < ActiveRecord::Base
+  belongs_to :account
   has_many :steps
   has_many :answers
 
@@ -13,5 +14,11 @@ class Workflow < ActiveRecord::Base
   end
 
   class UnmatchableDataError < StandardError; end
+
+  def to_h
+    {
+      token: token
+    }
+  end
 end
 
