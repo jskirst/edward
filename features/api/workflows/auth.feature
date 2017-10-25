@@ -5,14 +5,13 @@ Feature: Simulated authentication and introduction flow
     And I send and accept JSON
 
   Scenario:
-    When I send a POST request to "/api/workflows/auth/steps" with the following:
+    When I send a POST request to "/api/workflows/auth/prompts" with the following:
     """
     {
       "facts": {}
     }
     """
-    Then the response status should be "200"
-    And the JSON response should be:
+    Then the JSON response should be:
     """
     {
       "token": "phone",
@@ -24,9 +23,10 @@ Feature: Simulated authentication and introduction flow
       ]
     }
     """
+    And the response status should be "200"
 
   Scenario:
-    When I send a POST request to "/api/workflows/auth/steps" with the following:
+    When I send a POST request to "/api/workflows/auth/prompts" with the following:
     """
     {
       "facts": {
@@ -49,7 +49,7 @@ Feature: Simulated authentication and introduction flow
     """
 
   Scenario:
-    When I send a POST request to "/api/workflows/auth/steps" with the following:
+    When I send a POST request to "/api/workflows/auth/prompts" with the following:
     """
     {
       "facts": {

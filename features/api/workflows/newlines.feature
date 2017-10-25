@@ -5,7 +5,7 @@ Feature: New lines
     And I send and accept JSON
 
   Scenario: Split text divided by new line
-    When I send a POST request to "/api/workflows/newline/steps" with the following:
+    When I send a POST request to "/api/workflows/newline/prompts" with the following:
     """
     {
       "facts": {}

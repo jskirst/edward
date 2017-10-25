@@ -13,4 +13,3 @@ class Api::WorkflowsController < Api::ApplicationController
     @authority
   end
 end
-

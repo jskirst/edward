@@ -5,7 +5,7 @@ Feature: Call-to-Action (CTA)
     And I send and accept JSON
 
   Scenario: Step returns CTA if present
-    When I send a POST request to "/api/workflows/cta/steps" with the following:
+    When I send a POST request to "/api/workflows/cta/prompts" with the following:
     """
     {
       "facts": {}

@@ -4,18 +4,21 @@ class Answer < ActiveRecord::Base
 
   accepts_nested_attributes_for :options
 
-  def to_h(user_facts)
+  def to_h(user_facts = nil)
     @hsh ||= begin
       hsh = {
-        type: input_type
+        name: name,
       }
-      hsh.merge!(options: Options.new(options).to_a) if options.any?
-      hsh.merge!(characters: characters) if characters
-      hsh.merge!(text_field_type: text_field_type) if text_field_type
-      hsh.merge!(mask: mask) if mask
+      hsh[:input_type] = input_type unless user_facts
+      hsh[:type] = input_type if user_facts
+      user_facts ||= {}
+      hsh[:options] = Options.new(options).to_a if options.any?
+      hsh[:characters] = characters if characters
+      hsh[:text_field_type] = text_field_type if text_field_type
+      hsh[:mask] = mask if mask
       value = user_facts[name]
-      hsh.merge!(value: default_value) if default_value
-      hsh.merge!(value: value) if value
+      hsh[:value] = default_value if default_value
+      hsh[:value] = value if value
       hsh
     end
   end

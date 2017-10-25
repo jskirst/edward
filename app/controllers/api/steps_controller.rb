@@ -6,6 +6,6 @@ class Api::StepsController < Api::ApplicationController
   owner_lookup_field :token
 
   resource_lookup_param :token
-  resource_permitted_params [:token, :text, :conditions, :callout, :callout_method, :callout_body]
-
+  resource_permitted_params %i[token text conditions callout callout_method callout_body
+                               cta cta_class cta_button]
 end

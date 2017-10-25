@@ -1,7 +1,7 @@
 Feature: Error handling
 
   Scenario: Workflow not found
-    When I send a POST request to "/api/workflows/notreal/steps" with the following:
+    When I send a POST request to "/api/workflows/notreal/prompts" with the following:
     """
     {
       "facts": {}
@@ -17,7 +17,7 @@ Feature: Error handling
 
   Scenario: Matching step not found
     Given I am Cannot Match
-    When I send a POST request to "/api/workflows/cannotmatch/steps" with the following:
+    When I send a POST request to "/api/workflows/cannotmatch/prompts" with the following:
     """
     {
       "facts": {}
@@ -34,7 +34,7 @@ Feature: Error handling
 
   Scenario: Answer not found
     Given I am Nosuch Answer
-    When I send a POST request to "/api/workflows/nosuchanswer/steps" with the following:
+    When I send a POST request to "/api/workflows/nosuchanswer/prompts" with the following:
     """
     {
       "facts": {}

@@ -1,4 +1,13 @@
 class Prompt
+  attr_reader :step
+
+  delegate :text, :token, :cta, :cta_class, :cta_href,
+    :callout, :callout_body, :callout_method, to: :step
+
+  def initialize(step)
+    @step = step
+  end
+
   def to_h(user_facts)
     @user_facts = user_facts
     @hsh ||= begin

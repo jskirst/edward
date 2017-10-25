@@ -1,5 +1,5 @@
 Cucumber::Persona.define "Ragnar Lothbrok" do
-  wf = Workflow.create!(token: 'abc')
+  wf = Workflow.create!(token: 'abc', account: Account.create!)
   wf.steps.create!(token: "intro", text: "My first name is {{?user_first_name}}, and my last name is {{?user_last_name}}, and I am {{?user_age}} years old. Generally I prefer {{?user_style_preference}} wines.",
                conditions: URI.escape("user_first_name=&user_last_name=&user_style_preference="))
   Answer.create!(workflow: wf, name: "user_first_name", input_type: "short_text", characters: 8, text_field_type: 'text')
@@ -42,7 +42,7 @@ Cucumber::Persona.define "Ragnar Lothbrok" do
 end
 
 Cucumber::Persona.define "New Line" do
-  wf = Workflow.find_or_create_by(token: 'newline')
+  wf = Workflow.find_or_create_by(token: 'newline', account: Account.create!)
   Step.create!(token: "newline",
                workflow: wf,
                text: "Texting a token\nto your phone.",
@@ -50,7 +50,7 @@ Cucumber::Persona.define "New Line" do
 end
 
 Cucumber::Persona.define "Callto Action" do
-  wf = Workflow.find_or_create_by(token: 'cta')
+  wf = Workflow.find_or_create_by(token: 'cta', account: Account.create!)
   Step.create!(token: "hello",
                workflow: wf,
                text: "Hello.",
@@ -61,7 +61,7 @@ Cucumber::Persona.define "Callto Action" do
 end
 
 Cucumber::Persona.define "Cannot Match" do
-  wf = Workflow.find_or_create_by(token: 'cannotmatch')
+  wf = Workflow.find_or_create_by(token: 'cannotmatch', account: Account.create!)
   Step.create!(token: "impossible",
                workflow: wf,
                text: "Hello.",
@@ -69,7 +69,7 @@ Cucumber::Persona.define "Cannot Match" do
 end
 
 Cucumber::Persona.define "Nosuch Answer" do
-  wf = Workflow.find_or_create_by(token: 'nosuchanswer')
+  wf = Workflow.find_or_create_by(token: 'nosuchanswer', account: Account.create!)
   Step.create!(token: "impossible",
                workflow: wf,
                text: "Hello.{{?doesnotexist}}",
@@ -77,7 +77,7 @@ Cucumber::Persona.define "Nosuch Answer" do
 end
 
 Cucumber::Persona.define "Json Path" do
-  wf = Workflow.find_or_create_by(token: 'jsonpath')
+  wf = Workflow.find_or_create_by(token: 'jsonpath', account: Account.create!)
   Step.create!(token: "jsonpath",
                workflow: wf,
                text: "Today's weather is {{$.weather.days[0].summary}}.",
@@ -87,7 +87,7 @@ Cucumber::Persona.define "Json Path" do
 end
 
 Cucumber::Persona.define "Alpha Numeric" do
-  wf = Workflow.find_or_create_by(token: 'alphanumeric')
+  wf = Workflow.find_or_create_by(token: 'alphanumeric', account: Account.create!)
   Step.create!(token: "alphanumeric",
                workflow: wf,
                text: "Letter.{{?alpha_1}}",
@@ -98,7 +98,7 @@ Cucumber::Persona.define "Alpha Numeric" do
 end
 
 Cucumber::Persona.define "Default Value" do
-  wf = Workflow.find_or_create_by(token: 'defaultvalue')
+  wf = Workflow.find_or_create_by(token: 'defaultvalue', account: Account.create!)
   Step.create!(token: "defaultvalue",
                workflow: wf,
                text: "Default.{{?default_value}}",
@@ -110,7 +110,7 @@ Cucumber::Persona.define "Default Value" do
 end
 
 Cucumber::Persona.define "Default Textvalue" do
-  wf = Workflow.find_or_create_by(token: 'defaulttextvalue')
+  wf = Workflow.find_or_create_by(token: 'defaulttextvalue', account: Account.create!)
   Step.create!(token: "defaulttextvalue",
                workflow: wf,
                text: "Default.{{?default_text_value='false'}}",
@@ -121,7 +121,7 @@ Cucumber::Persona.define "Default Textvalue" do
 end
 
 Cucumber::Persona.define "Arthur Dent" do
-  wf = Workflow.find_or_create_by(token: 'auth')
+  wf = Workflow.find_or_create_by(token: 'auth', account: Account.create!)
 
   Step.create!(token: "phone",
                workflow: wf,

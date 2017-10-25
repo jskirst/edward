@@ -5,7 +5,7 @@ Feature: JSONPath
     And I send and accept JSON
 
   Scenario: Steps can return data parsed from callout response JSON with JSONPath
-    When I send a POST request to "/api/workflows/jsonpath/steps" with the following:
+    When I send a POST request to "/api/workflows/jsonpath/prompts" with the following:
     """
     {
       "facts": {}

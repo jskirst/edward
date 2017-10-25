@@ -4,7 +4,7 @@ class Workflow < ActiveRecord::Base
   has_many :answers
 
   before_create do
-    self.token ||= SecureRandom::hex(8)
+    self.token ||= SecureRandom.hex(8)
   end
 
   def match(data)
@@ -21,4 +21,3 @@ class Workflow < ActiveRecord::Base
     }
   end
 end
-

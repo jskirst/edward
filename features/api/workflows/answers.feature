@@ -2,7 +2,7 @@ Feature: Answers
 
   Scenario: Answer with numbers in name
     Given I am Alpha Numeric
-    When I send a POST request to "/api/workflows/alphanumeric/steps" with the following:
+    When I send a POST request to "/api/workflows/alphanumeric/prompts" with the following:
     """
     {
       "facts": {}
@@ -23,7 +23,7 @@ Feature: Answers
 
   Scenario: Answers with default_value set in the step text should return that value
     Given I am Default Textvalue
-    When I send a POST request to "/api/workflows/defaulttextvalue/steps" with the following:
+    When I send a POST request to "/api/workflows/defaulttextvalue/prompts" with the following:
     """
     {
     "facts": {}
@@ -45,7 +45,7 @@ Feature: Answers
 
   Scenario: Answers with default_value set should return them
     Given I am Default Value
-    When I send a POST request to "/api/workflows/defaultvalue/steps" with the following:
+    When I send a POST request to "/api/workflows/defaultvalue/prompts" with the following:
     """
     {
       "facts": {}
