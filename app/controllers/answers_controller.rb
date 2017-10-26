@@ -11,7 +11,7 @@ class AnswersController < ApplicationController
 
   private
 
-  def after_create_path(resource)
+  def after_create_path(*)
     workflow_path(owner)
   end
   alias :after_update_path :after_create_path

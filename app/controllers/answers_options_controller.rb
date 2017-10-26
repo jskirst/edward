@@ -10,7 +10,7 @@ class AnswersOptionsController < ApplicationController
 
   private
 
-  def after_create_path(resource)
+  def after_create_path(*)
     edit_workflow_answer_path(owner.workflow, owner)
   end
   alias :after_delete_path :after_create_path
