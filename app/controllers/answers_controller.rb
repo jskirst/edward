@@ -11,10 +11,6 @@ class AnswersController < ApplicationController
 
   private
 
-  def authority
-    current_user.account
-  end
-
   def after_create_path(resource)
     workflow_path(owner)
   end

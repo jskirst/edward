@@ -6,6 +6,10 @@ class Answer < ActiveRecord::Base
 
   validates :name, presence: true
 
+  def to_param
+    name
+  end
+
   def to_h(user_facts = nil)
     @hsh ||= begin
       hsh = {

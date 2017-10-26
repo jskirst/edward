@@ -1,6 +1,7 @@
 h2= @resource.name
 
 = link_to "Edit", edit_workflow_path(@resource)
+= link_to "Delete", workflow_path(@resource), method: :delete
 
 h3 Steps
 = link_to "New Step", new_workflow_step_path(@resource)
@@ -13,3 +14,9 @@ h3 Answers
 ol
   - @resource.answers.each do |answer|
     li= link_to answer.name, edit_workflow_answer_path(@resource, answer)
+
+h3 Options
+= link_to "New Option", new_workflow_option_path(@resource)
+ol
+  - @resource.options.each do |option|
+    li= link_to option.name, edit_workflow_option_path(@resource, option)

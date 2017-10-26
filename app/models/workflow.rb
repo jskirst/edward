@@ -2,6 +2,7 @@ class Workflow < ActiveRecord::Base
   belongs_to :account
   has_many :steps
   has_many :answers
+  has_many :options
 
   validates :name, presence: true
   validates :token, presence: true

@@ -5,22 +5,23 @@ Cucumber::Persona.define "Ragnar Lothbrok" do
   Answer.create!(workflow: wf, name: "user_first_name", input_type: "short_text", characters: 8, text_field_type: 'text')
   Answer.create!(workflow: wf, name: "user_last_name", input_type: "short_text", characters: 10, text_field_type: 'text')
   Answer.create!(workflow: wf, name: "user_age", input_type: "short_text", characters: 3, text_field_type: 'number')
-  Answer.create!(workflow: wf, name: "user_style_preference",
-                 input_type: "select",
-                 options_attributes: [
-                   { value: "red", text: "red" },
-                   { value: "white", text: "white" }
-                 ])
+  red = wf.options.create!(value: "red", text: "red")
+  white = wf.options.create!(value: "white", text: "white")
+  answer = Answer.create!(workflow: wf, name: "user_style_preference",
+                 input_type: "select")
+  answer.options << red
+  answer.options << white
 
   wf.steps.create!(text: "Hello {{@user_first_name}}, would you like any recommendations?\n{{?user_desires_recommendations}}",
                    token: "hello",
                    conditions: URI.escape("user_first_name!=&user_desires_recommendations="))
-  Answer.create!(workflow: wf, name: "user_desires_recommendations",
-                 input_type: "select",
-                 options_attributes: [
-                   { value: "yes", text: "Yes" },
-                   { value: "no", text: "No" }
-                 ])
+  yes = wf.options.create!(value: "yes", text: "Yes")
+  no = wf.options.create!(value: "no", text: "No")
+  answer = Answer.create!(workflow: wf, name: "user_desires_recommendations",
+                 input_type: "select")
+  answer.options << yes
+  answer.options << no
+
 
   wf.steps.create!(token: "finethen",
                    text: "Well, fine then.",
