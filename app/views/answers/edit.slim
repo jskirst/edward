@@ -7,3 +7,13 @@
   = f.input :default_value
   = f.input :mask
   = f.submit "Save"
+
+h2 Options
+= link_to "Add Option", new_answer_answers_option_path(@resource)
+
+- if @resource.options.empty?
+  p At least 1 option is required.
+- else
+  ol
+    - @resource.answers_options.each do |answers_option|
+      li #{answers_option.option.name} (#{link_to "Remove", answer_answers_option_path(@resource, answers_option), method: :delete})

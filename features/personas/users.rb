@@ -4,7 +4,10 @@ Cucumber::Persona.define "Ben Franklin" do
   wf = account.workflows.create!(token: 'okayworkflow', name: 'okayworkflow')
   wf.steps.create!(text: "Are you okay?", conditions: "hmm=")
   wf.answers.create!(name: "goodanswer", input_type: "short_text", text_field_type: "text")
-  wf.options.create!(value: 'yes', text: 'Yes!')
+  select = wf.answers.create!(name: "selectanswer", input_type: "select")
+  yes = wf.options.create!(value: 'yes', text: 'Yes!')
+  select.options << yes
+  wf.options.create!(value: 'huh', text: 'Huh?')
 end
 
 Cucumber::Persona.define "Martha Washington" do

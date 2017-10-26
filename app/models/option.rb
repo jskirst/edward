@@ -1,5 +1,6 @@
 class Option < ActiveRecord::Base
-  has_and_belongs_to_many :answers
+  has_many :answers_options
+  has_many :options, through: :answers_options
   belongs_to :workflow
 
   validates :text, presence: true

@@ -1,0 +1,3 @@
+= simple_form_for([@owner, @resource]) do |f|
+  = f.input :option_id, collection: @owner.workflow.options.map { |o| [o.name, o.id] }
+  = f.submit "Save"

@@ -7,10 +7,6 @@ Rails.application.routes.draw do
       resources :answers, param: :name
       resources :prompts
     end
-
-    resources :answers, only: [] do
-      resources :options
-    end
   end
 
   resource :dashboard
@@ -18,6 +14,10 @@ Rails.application.routes.draw do
     resources :steps, param: :token, only: [:edit, :new, :create, :update, :destroy]
     resources :answers, param: :name
     resources :options, param: :token
+  end
+
+  resources :answers, only: [], param: :name do
+    resources :answers_options, only: [:new, :create, :destroy]
   end
 
   root to: 'workflows#index'
