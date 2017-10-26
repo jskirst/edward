@@ -40,3 +40,10 @@ Feature: Steps
     And I fill in "Text" with ""
     And I press "Save"
     Then I should see "Text can't be blank"
+
+  Scenario: User can delete a step
+    When follow "okayworkflow"
+    And I follow "Are you okay?"
+    And I click on "Delete"
+    Then I should see "okayworkflow"
+    And I should not see "Are you okay?"

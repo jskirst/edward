@@ -1,4 +1,4 @@
-Feature: Toolboxes
+Feature: Workflows
 
   Background:
     Given I am Ben Franklin
@@ -27,10 +27,6 @@ Feature: Toolboxes
     When I follow "okayworkflow"
     And I should see "okayworkflow"
 
-  Scenario: User can view workflow
-    When I follow "okayworkflow"
-    And I should see "okayworkflow"
-
   Scenario: User can edit and update a workflow
     When I follow "okayworkflow"
     And I click on "Edit"
@@ -44,3 +40,9 @@ Feature: Toolboxes
     And I fill in "Name" with ""
     And I press "Save"
     Then I should see "Name can't be blank"
+
+  Scenario: User can delete a workflow
+    When follow "okayworkflow"
+    And I click on "Delete"
+    Then I should see "Workflows"
+    And I should not see "okayworkflow"
