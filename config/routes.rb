@@ -14,7 +14,10 @@ Rails.application.routes.draw do
   end
 
   resource :dashboard
-  resources :workflows, param: :token
+  resources :workflows, param: :token do
+    resources :steps, param: :token, only: [:edit, :new, :create, :update, :destroy]
+    resources :answers, param: :token
+  end
 
   root to: 'workflows#index'
 end

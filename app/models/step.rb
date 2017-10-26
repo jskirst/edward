@@ -3,6 +3,9 @@ require 'securerandom'
 class Step < ActiveRecord::Base
   belongs_to :workflow
 
+  validates :text, presence: true
+  validates :conditions, presence: true
+
   before_save do
     self.token ||= SecureRandom.uuid
   end
@@ -26,5 +29,9 @@ class Step < ActiveRecord::Base
       text: text,
       conditions: conditions
     }
+  end
+
+  def to_param
+    token
   end
 end

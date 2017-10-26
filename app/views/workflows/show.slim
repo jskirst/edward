@@ -1,3 +1,8 @@
 h2= @resource.name
 
 = link_to "Edit", edit_workflow_path(@resource)
+
+= link_to "New Step", new_workflow_step_path(@resource)
+ol
+  - @resource.steps.each do |step|
+    li= link_to step.text, edit_workflow_step_path(@resource, step)

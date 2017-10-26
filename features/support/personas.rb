@@ -54,7 +54,7 @@ Cucumber::Persona.define "Callto Action" do
   Step.create!(token: "hello",
                workflow: wf,
                text: "Hello.",
-               conditions: "",
+               conditions: "hmm=",
                cta: "Would you like to play a game?",
                cta_class: "this that",
                cta_href: "https://www.example.com")
