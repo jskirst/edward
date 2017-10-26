@@ -1,0 +1,9 @@
+= link_to "Delete", workflow_answer_path(@owner, @resource), method: :delete
+= simple_form_for([@owner, @resource]) do |f|
+  = f.input :name
+  = f.input :input_type
+  = f.input :text_field_type
+  = f.input :characters
+  = f.input :default_value
+  = f.input :mask
+  = f.submit "Save"

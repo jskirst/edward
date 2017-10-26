@@ -4,6 +4,8 @@ class Answer < ActiveRecord::Base
 
   accepts_nested_attributes_for :options
 
+  validates :name, presence: true
+
   def to_h(user_facts = nil)
     @hsh ||= begin
       hsh = {

@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/starfighterheavy/rapido.git
-  revision: c24c7e39aa28f7afadad1fc599491c9decc7c98a
+  revision: 9061085d59497dbd3de606b93b9bf0caa7a292e0
   specs:
     rails-rapido (0.3.0)
       kaminari (~> 1.1)
