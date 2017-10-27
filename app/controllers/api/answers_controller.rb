@@ -7,5 +7,7 @@ class Api::AnswersController < Api::ApplicationController
   owner_lookup_field :token
 
   resource_lookup_param :token
-  resource_permitted_params %i[name input_type text_field_type mask default_value characters duplicate_answer_token]
+  resource_permitted_params %i[name input_type text_field_type mask
+                               default_value characters duplicate_answer_token
+                               prefix suffix]
 end

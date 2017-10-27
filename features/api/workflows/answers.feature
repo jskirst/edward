@@ -42,7 +42,6 @@ Feature: Answers
     }
     """
 
-
   Scenario: Answers with default_value set should return them
     Given I am Default Value
     When I send a POST request to "/api/workflows/defaultvalue/prompts" with the following:
@@ -60,6 +59,26 @@ Feature: Answers
       "parts": [
         { "type": "text", "content": "Default." },
         { "type": "hidden", "name": "default_value", "value": "true" }
+      ]
+    }
+    """
+  Scenario: Answers with prefix and suffix should return them
+    Given I am Suffix Prefix
+    When I send a POST request to "/api/workflows/suffixprefix/prompts" with the following:
+    """
+    {
+      "facts": {}
+    }
+    """
+    Then the response status should be "200"
+    And the JSON response should be:
+    """
+    {
+      "token": "suffixprefix",
+      "text": "Suffix & Prefix.{{?suffix_prefix}}",
+      "parts": [
+        { "type": "text", "content": "Suffix & Prefix." },
+        { "type": "short_text", "name": "suffix_prefix", "suffix": "dollars", "prefix": "$", "text_field_type": "text" }
       ]
     }
     """

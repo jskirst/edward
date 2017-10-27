@@ -98,6 +98,20 @@ Cucumber::Persona.define "Alpha Numeric" do
                 workflow: wf)
 end
 
+Cucumber::Persona.define "Suffix Prefix" do
+  wf = Workflow.find_or_create_by(token: 'suffixprefix', account: Account.create!)
+  Step.create!(token: "suffixprefix",
+               workflow: wf,
+               text: "Suffix & Prefix.{{?suffix_prefix}}",
+               conditions: "thing=")
+  Answer.create(name: 'suffix_prefix',
+                input_type: 'short_text',
+                text_field_type: 'text',
+                prefix: '$',
+                suffix: 'dollars',
+                workflow: wf)
+end
+
 Cucumber::Persona.define "Default Value" do
   wf = Workflow.find_or_create_by(token: 'defaultvalue', account: Account.create!)
   Step.create!(token: "defaultvalue",
