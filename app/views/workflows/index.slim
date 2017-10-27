@@ -1,7 +1,10 @@
-h2 Workflows
-
-= link_to "New Workflow", new_workflow_path
-
-ol
-  - @resource_collection.each do |workflow|
-    li= link_to workflow.name, workflow
+.row
+  .col-lg-12
+    .page-header
+      h1 Workflows
+      = link_to "New Workflow", new_workflow_path, style: 'float:right'
+.row
+  .col-lg-12
+    ol.list-group
+      - @resource_collection.each do |workflow|
+        li.list-group-item= link_to workflow.name, workflow
