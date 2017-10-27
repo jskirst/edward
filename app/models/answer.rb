@@ -51,7 +51,8 @@ class Answer < ActiveRecord::Base
         hsh[:input_type] = input_type unless user_facts
         hsh[:default_value] = default_value if default_value
       end
-
+      hsh[:prefix] = prefix if prefix
+      hsh[:suffix] = suffix if suffix
       hsh[:options] = Options.new(options).to_a if options.any?
       hsh[:characters] = characters if characters
       hsh[:text_field_type] = text_field_type if text_field_type
