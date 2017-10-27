@@ -1,4 +1,8 @@
-= link_to "Delete", workflow_answer_path(@owner, @resource), method: :delete
+.row
+  .col-lg-12
+    .page-header
+      = button_to "Copy", workflow_answers_path(@owner), method: :post, class: 'btn btn-primary', params: { answer: { duplicate_answer_token: @resource.token } }
+
 = simple_form_for([@owner, @resource]) do |f|
   = f.input :name
   = f.input :input_type
@@ -17,3 +21,6 @@ h2 Options
   ol
     - @resource.answers_options.each do |answers_option|
       li #{answers_option.option.name} (#{link_to "Remove", answer_answers_option_path(@resource, answers_option), method: :delete})
+
+h4 Danger
+= link_to "Delete", workflow_answer_path(@owner, @resource), method: :delete, confirm: "Are you sure?", class: "btn btn-secondary"

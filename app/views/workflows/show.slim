@@ -3,7 +3,6 @@
     .page-header
       h1= @resource.name
       = link_to "Edit", edit_workflow_path(@resource), class: 'btn btn-primary'
-      = link_to "Delete", workflow_path(@resource), method: :delete, class: 'btn btn-secondary'
 
 .row.mt-2
   .col-lg-12
@@ -28,3 +27,9 @@
     ol.list-group.mt-3
       - @resource.options.each do |option|
         li.list-group-item= link_to option.name, edit_workflow_option_path(@resource, option)
+
+.row-mt-2
+  .col-lg-12
+    h3 Other
+    = button_to "Copy", workflows_path, method: :post, class: 'btn btn-primary', params: { workflow: { duplicate_workflow_token: @resource.token } }
+    = link_to "Delete", workflow_path(@resource), method: :delete, class: 'btn btn-secondary', confirm: "Are you sure?"

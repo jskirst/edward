@@ -46,3 +46,14 @@ Feature: Workflows
     And I click on "Delete"
     Then I should see "Workflows"
     And I should not see "okayworkflow"
+
+  Scenario: User can copy a workflow
+    When follow "okayworkflow"
+    And I press "Copy"
+    Then I should see "Copy - okayworkflow"
+    And I should see "goodanswer"
+    And I should see "selectanswer"
+    And I should see "Yes!"
+    And I should see "Huh?"
+    When I follow "selectanswer"
+    Then I should see "Yes!"

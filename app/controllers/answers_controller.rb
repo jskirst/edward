@@ -6,8 +6,8 @@ class AnswersController < ApplicationController
   owner_lookup_param :workflow_token
   owner_lookup_field :token
 
-  resource_lookup_param :name
-  resource_permitted_params [:name, :input_type, :text_field_type, :default_value, :characters, :mask]
+  resource_lookup_param :token
+  resource_permitted_params [:name, :input_type, :text_field_type, :default_value, :characters, :mask, :duplicate_answer_token]
 
   private
 

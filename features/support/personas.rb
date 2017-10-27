@@ -2,12 +2,12 @@ Cucumber::Persona.define "Ragnar Lothbrok" do
   wf = Workflow.create!(token: 'abc', account: Account.create!)
   wf.steps.create!(token: "intro", text: "My first name is {{?user_first_name}}, and my last name is {{?user_last_name}}, and I am {{?user_age}} years old. Generally I prefer {{?user_style_preference}} wines.",
                conditions: URI.escape("user_first_name=&user_last_name=&user_style_preference="))
-  Answer.create!(workflow: wf, name: "user_first_name", input_type: "short_text", characters: 8, text_field_type: 'text')
-  Answer.create!(workflow: wf, name: "user_last_name", input_type: "short_text", characters: 10, text_field_type: 'text')
-  Answer.create!(workflow: wf, name: "user_age", input_type: "short_text", characters: 3, text_field_type: 'number')
+  Answer.create!(workflow: wf, token: "user_first_name", name: "user_first_name", input_type: "short_text", characters: 8, text_field_type: 'text')
+  Answer.create!(workflow: wf, token: "user_last_name", name: "user_last_name", input_type: "short_text", characters: 10, text_field_type: 'text')
+  Answer.create!(workflow: wf, token: "user_age", name: "user_age", input_type: "short_text", characters: 3, text_field_type: 'number')
   red = wf.options.create!(value: "red", text: "red")
   white = wf.options.create!(value: "white", text: "white")
-  answer = Answer.create!(workflow: wf, name: "user_style_preference",
+  answer = Answer.create!(workflow: wf, token: "user_style_preference", name: "user_style_preference",
                  input_type: "select")
   answer.options << red
   answer.options << white
@@ -17,7 +17,7 @@ Cucumber::Persona.define "Ragnar Lothbrok" do
                    conditions: URI.escape("user_first_name!=&user_desires_recommendations="))
   yes = wf.options.create!(value: "yes", text: "Yes")
   no = wf.options.create!(value: "no", text: "No")
-  answer = Answer.create!(workflow: wf, name: "user_desires_recommendations",
+  answer = Answer.create!(workflow: wf, token: "user_desires_recommendations", name: "user_desires_recommendations",
                  input_type: "select")
   answer.options << yes
   answer.options << no
@@ -39,7 +39,7 @@ Cucumber::Persona.define "Ragnar Lothbrok" do
                    callout_method: "post",
                    callout_body: "preference={{user_style_preference}}",
                    conditions: URI.escape("user_style_preference=red&user_desires_recommendations=yes"))
-  Answer.create!(workflow: wf, name: "recommendation", input_type: "hidden")
+  Answer.create!(workflow: wf, token: "recommendation", name: "recommendation", input_type: "hidden")
 end
 
 Cucumber::Persona.define "New Line" do
@@ -129,7 +129,7 @@ Cucumber::Persona.define "Arthur Dent" do
                text: "Texting a token to your phone.\n{{?user_phone_number}}",
                conditions: "user_phone_number=")
   Answer.create!(workflow: wf,
-                 name: "user_phone_number",
+                 token: "user_phone_number", name: "user_phone_number",
                  input_type: "short_text",
                  characters: 11,
                  text_field_type: 'number',
@@ -143,7 +143,7 @@ Cucumber::Persona.define "Arthur Dent" do
                callout_method: "post",
                callout_body: "user[phone={{user_phone_number}}]")
   Answer.create!(workflow: wf,
-                 name: "user_confirmation_token",
+                 token: "user_confirmation_token", name: "user_confirmation_token",
                  input_type: "short_text",
                  characters: 6,
                  text_field_type: 'number',
@@ -157,6 +157,6 @@ Cucumber::Persona.define "Arthur Dent" do
                callout_method: "post",
                callout_body: "session[phone]={{phone}}&session[confirmation_token]={{user_confirmation_token}}")
   Answer.create!(workflow: wf,
-                 name: "auth_token",
+                 token: "auth_token", name: "auth_token",
                  input_type: "hidden")
 end

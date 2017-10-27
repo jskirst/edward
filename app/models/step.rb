@@ -3,11 +3,28 @@ require 'securerandom'
 class Step < ActiveRecord::Base
   belongs_to :workflow
 
+  attr_accessor :duplicate_step_token
+
   validates :text, presence: true
   validates :conditions, presence: true
 
+  before_validation do
+    if duplicate_step_token.present?
+      duplicate_step = account.steps.find_by!(token: duplicate_step_token)
+      duplicate_step.to_h.each do |key, value|
+        self.send("#{key}=", value)
+      end
+      self.token = nil
+      self.text = 'Copy - ' + duplicate_step.text
+    end
+  end
+
   before_save do
     self.token ||= SecureRandom.uuid
+  end
+
+  def account
+    workflow.account
   end
 
   def match?(data)
@@ -27,7 +44,13 @@ class Step < ActiveRecord::Base
     {
       token: token,
       text: text,
-      conditions: conditions
+      conditions: conditions,
+      cta: cta,
+      cta_class: cta_class,
+      cta_href: cta_href,
+      callout: callout,
+      callout_method: callout_method,
+      callout_body: callout_body
     }
   end
 

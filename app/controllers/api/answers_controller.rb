@@ -6,6 +6,6 @@ class Api::AnswersController < Api::ApplicationController
   owner_lookup_param :workflow_token
   owner_lookup_field :token
 
-  resource_lookup_param :name
-  resource_permitted_params %i[name input_type text_field_type mask default_value characters]
+  resource_lookup_param :token
+  resource_permitted_params %i[name input_type text_field_type mask default_value characters duplicate_answer_token]
 end

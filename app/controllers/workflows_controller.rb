@@ -5,7 +5,7 @@ class WorkflowsController < ApplicationController
   owner_class :account
 
   resource_lookup_param :token
-  resource_permitted_params [:name]
+  resource_permitted_params [:name, :duplicate_workflow_token]
 
   private
 

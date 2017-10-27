@@ -50,3 +50,10 @@ Feature: Answers
     And I click on "Delete"
     Then I should see "okayworkflow"
     And I should not see "goodanswer"
+
+  Scenario: User can copy a answer
+    When follow "okayworkflow"
+    And I follow "selectanswer"
+    And I press "Copy"
+    Then I should see "copy_selectanswer"
+    And I should see "Huh?"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171026162501) do
+ActiveRecord::Schema.define(version: 20171027191410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20171026162501) do
     t.string "mask"
     t.integer "workflow_id"
     t.text "default_value"
+    t.string "token"
     t.index ["workflow_id", "name"], name: "index_answers_on_workflow_id_and_name", unique: true
   end
 
@@ -46,6 +47,7 @@ ActiveRecord::Schema.define(version: 20171026162501) do
     t.string "text"
     t.integer "workflow_id"
     t.string "token"
+    t.integer "duplicated_from_id"
   end
 
   create_table "steps", force: :cascade do |t|

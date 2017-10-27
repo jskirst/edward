@@ -11,7 +11,8 @@ class StepsController < ApplicationController
   owner_lookup_field :token
 
   resource_lookup_param :token
-  resource_permitted_params [:text, :conditions, :cta, :cta_class, :cta_href, :callout, :callout_method, :callout_body]
+  resource_permitted_params [:text, :conditions, :duplicate_step_token, :cta, :cta_class,
+                             :cta_href, :callout, :callout_method, :callout_body]
 
   private
 

@@ -10,7 +10,13 @@ Feature: Steps
     {
       "token": "newstep",
       "text": "okay text",
-      "conditions": "real="
+      "conditions": "real=",
+      "cta": null,
+      "cta_class": null,
+      "cta_href": null,
+      "callout": null,
+      "callout_method": null,
+      "callout_body": null
     }
     """
     Then the response status should be "401"
@@ -27,7 +33,13 @@ Feature: Steps
     {
       "token": "newstep",
       "text": "new text",
-      "conditions": "new="
+      "conditions": "new=",
+      "cta": null,
+      "cta_class": null,
+      "cta_href": null,
+      "callout": null,
+      "callout_method": null,
+      "callout_body": null
     }
     """
     Then the response status should be "201"
@@ -36,7 +48,13 @@ Feature: Steps
     {
       "token": "newstep",
       "text": "new text",
-      "conditions": "new="
+      "conditions": "new=",
+      "cta": null,
+      "cta_class": null,
+      "cta_href": null,
+      "callout": null,
+      "callout_method": null,
+      "callout_body": null
     }
     """
 
@@ -48,7 +66,13 @@ Feature: Steps
     {
       "token": "okaystep",
       "text": "okay text",
-      "conditions": "hmm="
+      "conditions": "hmm=",
+      "cta": null,
+      "cta_class": null,
+      "cta_href": null,
+      "callout": null,
+      "callout_method": null,
+      "callout_body": null
     }
     """
 
@@ -61,7 +85,13 @@ Feature: Steps
       {
         "token": "okaystep",
         "text": "okay text",
-        "conditions": "hmm="
+        "conditions": "hmm=",
+        "cta": null,
+        "cta_class": null,
+        "cta_href": null,
+        "callout": null,
+        "callout_method": null,
+        "callout_body": null
       }
     ]
     """
@@ -72,7 +102,13 @@ Feature: Steps
     {
       "token": "updatedstep",
       "text": "new text",
-      "conditions": "ahh="
+      "conditions": "ahh=",
+      "cta": null,
+      "cta_class": null,
+      "cta_href": null,
+      "callout": null,
+      "callout_method": null,
+      "callout_body": null
     }
     """
     Then the response status should be "200"
@@ -81,7 +117,13 @@ Feature: Steps
     {
       "token": "updatedstep",
       "text": "new text",
-      "conditions": "ahh="
+      "conditions": "ahh=",
+      "cta": null,
+      "cta_class": null,
+      "cta_href": null,
+      "callout": null,
+      "callout_method": null,
+      "callout_body": null
     }
     """
 
@@ -93,6 +135,12 @@ Feature: Steps
     {
       "token": "okaystep",
       "text": "okay text",
-      "conditions": "hmm="
+      "conditions": "hmm=",
+      "cta": null,
+      "cta_class": null,
+      "cta_href": null,
+      "callout": null,
+      "callout_method": null,
+      "callout_body": null
     }
     """

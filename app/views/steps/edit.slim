@@ -1,5 +1,12 @@
-= link_to "Delete", workflow_step_path(@owner, @resource), method: :delete
-= simple_form_for([@owner, @resource]) do |f|
-  - @resource_permitted_params.each do |param|
-    = f.input param
-  = f.submit "Save"
+.row
+  .col-lg-12
+    .page-header
+      = button_to "Copy", workflow_steps_path(@owner), method: :post, class: 'btn btn-primary', params: { step: { duplicate_step_token: @resource.token } }
+      = link_to "Delete", workflow_step_path(@owner, @resource), method: :delete, class: 'btn btn-secondary', confirm: 'Are you sure?'
+
+.row
+  .col-lg-12
+    = simple_form_for([@owner, @resource]) do |f|
+      - @resource_permitted_params.each do |param|
+        = f.input param
+      = f.submit "Save"

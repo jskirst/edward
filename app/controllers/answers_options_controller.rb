@@ -3,8 +3,8 @@ class AnswersOptionsController < ApplicationController
   include Rapido::AppController
 
   owner_class :answer
-  owner_lookup_param :answer_name
-  owner_lookup_field :name
+  owner_lookup_param :answer_token
+  owner_lookup_field :token
 
   resource_permitted_params [:option_id]
 

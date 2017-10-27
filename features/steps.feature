@@ -47,3 +47,9 @@ Feature: Steps
     And I click on "Delete"
     Then I should see "okayworkflow"
     And I should not see "Are you okay?"
+
+  Scenario: User can copy a step
+    When follow "okayworkflow"
+    And I follow "Are you okay?"
+    And I press "Copy"
+    Then I should see "Copy - Are you okay?"
