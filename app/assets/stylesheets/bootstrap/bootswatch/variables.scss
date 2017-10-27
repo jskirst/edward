@@ -1,0 +1,105 @@
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #ecf0f1;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #b4bcc2;
+$gray-600: #95a5a6;
+$gray-700: #7b8a8b;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
+
+$blue:    #2C3E50;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #e83e8c !default;
+$red:     #E74C3C;
+$orange:  #fd7e14 !default;
+$yellow:  #F39C12;
+$green:   #18BC9C;
+$teal:    #20c997 !default;
+$cyan:    #3498DB;
+
+$primary:       $blue !default;
+$secondary:     $gray-600;
+$success:       $green !default;
+$info:          $cyan !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
+$light:         $gray-200;
+$dark:          $gray-700;
+
+
+// Links
+
+$link-color:                $success;
+
+// Fonts
+
+$font-family-sans-serif:      "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+$font-size-base:              0.9375rem;
+
+$h1-font-size:                3rem;
+$h2-font-size:                2.5rem;
+$h3-font-size:                2rem;
+
+// Tables
+
+$table-accent-bg:             $gray-200;
+
+// Dropdowns
+
+$dropdown-link-color:               $gray-700;
+$dropdown-link-hover-color:         $white;
+$dropdown-link-hover-bg:            $primary;
+
+// Navs
+
+$nav-link-padding-y:                .5rem !default;
+$nav-link-padding-x:                2rem;
+$nav-link-disabled-color:           $gray-600 !default;
+
+$nav-tabs-border-color:             $gray-200;
+
+// Navbar
+
+$navbar-padding-y:                  1rem;
+
+$navbar-dark-color:                 $white;
+$navbar-dark-hover-color:           $success;
+
+// Pagination
+
+$pagination-color:                  $white;
+$pagination-bg:                     $success;
+$pagination-border-width:           0;
+$pagination-border-color:           transparent;
+
+$pagination-hover-color:            $white;
+$pagination-hover-bg:               darken($success, 15%);
+$pagination-hover-border-color:     transparent;
+
+$pagination-active-bg:              $pagination-hover-bg;
+$pagination-active-border-color:    transparent;
+
+$pagination-disabled-color:         $gray-200;
+$pagination-disabled-bg:            lighten($success, 15%);
+$pagination-disabled-border-color:  transparent;
+
+// Progress bars
+
+$progress-height:                   10px;
+$progress-font-size:                10px;
+
+// List group
+
+$list-group-hover-bg:               $gray-200;
+
+$list-group-disabled-bg:            $gray-200;
+
+// Close
+
+$close-color:                       $white;
+$close-text-shadow:                 none;

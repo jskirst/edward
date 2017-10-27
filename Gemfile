@@ -11,18 +11,28 @@ gem 'rails', '~> 5.1.4'
 gem 'turbolinks'
 gem 'pg'
 gem 'puma', '~> 3.7'
-gem 'rack-cors'
-gem 'dotenv-rails'
-gem 'cucumber-persona'
+gem 'rails-rapido', github: 'starfighterheavy/rapido'
+
+# API
 gem 'rack-cors', require: 'rack/cors'
 gem 'httparty'
 gem 'liquid'
 gem 'jsonpath'
-gem 'rails-rapido', github: 'starfighterheavy/rapido'
 gem 'kaminari'
+
+# Security
 gem 'devise'
+
+# Structure
 gem 'slim'
 gem 'simple_form'
+
+# Style
+gem 'sass-rails'
+gem 'bootstrap'
+
+# Configuration
+gem 'dotenv-rails'
 
 group :test do
   gem 'capybara', '~> 2.13.0'
@@ -41,4 +51,5 @@ end
 
 group :development, :test do
   gem 'pry-byebug'
+  gem 'cucumber-persona'
 end
