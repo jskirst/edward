@@ -26,13 +26,9 @@ class Workflow < ActiveRecord::Base
     end
   end
 
-  def match(data)
-    matched_step = steps.find { |step| step.match?(data) }
-    return matched_step if matched_step
-    raise UnmatchableDataError
+  def prompts
+    Prompt::Factory.new(self)
   end
-
-  class UnmatchableDataError < StandardError; end
 
   def to_h
     {

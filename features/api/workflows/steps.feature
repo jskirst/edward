@@ -11,7 +11,7 @@ Feature: Steps API
       "facts": {}
     }
     """
-    Then the response status should be "200"
+    Then the response status should be "201"
     And the JSON response should be:
     """
     {
@@ -52,7 +52,7 @@ Feature: Steps API
       }
     }
     """
-    Then the response status should be "200"
+    Then the response status should be "201"
     And the JSON response should be:
     """
     {
@@ -88,7 +88,7 @@ Feature: Steps API
       }
     }
     """
-    Then the response status should be "200"
+    Then the response status should be "201"
     And the JSON response should be:
     """
     {
@@ -113,7 +113,7 @@ Feature: Steps API
       }
     }
     """
-    Then the response status should be "200"
+    Then the response status should be "201"
     And the JSON response should be:
     """
     {
@@ -142,7 +142,7 @@ Feature: Steps API
       }
     }
     """
-    Then the response status should be "200"
+    Then the response status should be "201"
     And the JSON response should be:
     """
     {

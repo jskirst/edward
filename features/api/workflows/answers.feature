@@ -1,5 +1,8 @@
 Feature: Answers
 
+  Background:
+    Given I send and accept JSON
+
   Scenario: Answer with numbers in name
     Given I am Alpha Numeric
     When I send a POST request to "/api/workflows/alphanumeric/prompts" with the following:
@@ -8,8 +11,7 @@ Feature: Answers
       "facts": {}
     }
     """
-    Then the response status should be "200"
-    And the JSON response should be:
+    Then the JSON response should be:
     """
     {
       "token": "alphanumeric",
@@ -20,6 +22,7 @@ Feature: Answers
       ]
     }
     """
+    And the response status should be "201"
 
   Scenario: Answers with default_value set in the step text should return that value
     Given I am Default Textvalue
@@ -29,8 +32,7 @@ Feature: Answers
     "facts": {}
     }
     """
-    Then the response status should be "200"
-    And the JSON response should be:
+    Then the JSON response should be:
     """
     {
       "token": "defaulttextvalue",
@@ -41,6 +43,7 @@ Feature: Answers
       ]
     }
     """
+    And the response status should be "201"
 
 
   Scenario: Answers with default_value set should return them
@@ -51,7 +54,7 @@ Feature: Answers
       "facts": {}
     }
     """
-    Then the response status should be "200"
+    Then the response status should be "201"
     And the JSON response should be:
     """
     {

@@ -11,7 +11,7 @@ Feature: Call-to-Action (CTA)
       "facts": {}
     }
     """
-    Then the response status should be "200"
+    Then the response status should be "201"
     And the JSON response should be:
     """
     {

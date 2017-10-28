@@ -11,8 +11,7 @@ Feature: New lines
       "facts": {}
     }
     """
-    Then the response status should be "200"
-    And the JSON response should be:
+    Then the JSON response should be:
     """
     {
       "token": "newline",
@@ -24,3 +23,4 @@ Feature: New lines
       ]
     }
     """
+    And the response status should be "201"

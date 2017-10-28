@@ -1,5 +1,8 @@
 Feature: Error handling
 
+  Background:
+    Given I send and accept JSON
+
   Scenario: Workflow not found
     When I send a POST request to "/api/workflows/notreal/prompts" with the following:
     """
@@ -11,7 +14,7 @@ Feature: Error handling
     And the JSON response should be:
     """
     {
-      "error": "Workflow not found"
+      "error": "Workflow not found."
     }
     """
 
@@ -27,8 +30,7 @@ Feature: Error handling
     And the JSON response should be:
     """
     {
-      "error": "No matching step found.",
-      "facts": {}
+      "error": "No matching step found."
     }
     """
 

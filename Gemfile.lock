@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/starfighterheavy/rapido.git
-  revision: 9061085d59497dbd3de606b93b9bf0caa7a292e0
+  revision: 968fce50e2f8a38fa4eb2106df213bd6956388a3
   specs:
     rails-rapido (0.3.0)
       kaminari (~> 1.1)
@@ -278,7 +278,7 @@ GEM
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.3)
-    tzinfo (1.2.3)
+    tzinfo (1.2.4)
       thread_safe (~> 0.1)
     warden (1.2.7)
       rack (>= 1.0)
