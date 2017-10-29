@@ -28,6 +28,7 @@ class Option < ActiveRecord::Base
 
   def to_h
     {
+      token: token,
       value: value,
       text: text
     }

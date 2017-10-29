@@ -20,9 +20,7 @@ class Api::PromptsController < ActionController::API
     render json: { error: 'Workflow not found.' }, status: 404
   end
 
-  owner_class :workflow
-  owner_lookup_param :workflow_token
-  owner_lookup_field :token
+  belongs_to :workflow, foreign_key: :token
 
   free_from_authority!
   permit_all_params!

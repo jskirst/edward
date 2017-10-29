@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :workflows, param: :token do
       resources :steps, param: :token
       resources :answers, param: :token
+      resources :options, param: :token
       resources :prompts
     end
   end

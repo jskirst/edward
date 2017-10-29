@@ -2,14 +2,14 @@ class WorkflowsController < ApplicationController
   include Rapido::Controller
   include Rapido::AppController
 
-  owner_class :account
+  belongs_to :account, getter: :current_user_account
 
-  resource_lookup_param :token
-  resource_permitted_params [:name, :duplicate_workflow_token]
+  lookup_param :token
+  attr_permitted :name, :duplicate_workflow_token
 
   private
 
-  def owner
+  def current_user_account
     current_user.account
   end
 end

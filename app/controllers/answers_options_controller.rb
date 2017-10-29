@@ -2,11 +2,9 @@ class AnswersOptionsController < ApplicationController
   include Rapido::Controller
   include Rapido::AppController
 
-  owner_class :answer
-  owner_lookup_param :answer_token
-  owner_lookup_field :token
+  belongs_to :answer, foreign_key: :token
 
-  resource_permitted_params [:option_id]
+  attr_permitted :option_id
 
   private
 

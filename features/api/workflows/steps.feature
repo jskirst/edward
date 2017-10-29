@@ -32,8 +32,8 @@ Feature: Steps API
           "type": "select",
           "name": "user_style_preference",
           "options": [
-            { "text": "red", "value": "red" },
-            { "text": "white", "value": "white" }
+          { "token": "redoption", "text": "red", "value": "red" },
+          { "token": "whiteoption", "text": "white", "value": "white" }
           ]
         },
         { "type": "text", "content": " wines." }
@@ -68,8 +68,8 @@ Feature: Steps API
           "type": "select",
           "name": "user_desires_recommendations",
           "options": [
-            { "text": "Yes", "value": "yes" },
-            { "text": "No", "value": "no" }
+          { "token": "yesoption", "text": "Yes", "value": "yes" },
+          { "token": "nooption", "text": "No", "value": "no" }
           ]
         }
       ]

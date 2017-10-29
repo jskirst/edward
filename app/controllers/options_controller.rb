@@ -2,12 +2,10 @@ class OptionsController < ApplicationController
   include Rapido::Controller
   include Rapido::AppController
 
-  owner_class :workflow
-  owner_lookup_param :workflow_token
-  owner_lookup_field :token
+  belongs_to :workflow, foreign_key: :token
 
-  resource_lookup_param :token
-  resource_permitted_params [:text, :value]
+  lookup_param :token
+  attr_permitted :text, :value
 
   private
 

@@ -1,13 +1,8 @@
 class AnswersController < ApplicationController
-  include Rapido::Controller
-  include Rapido::AppController
-
-  owner_class :workflow
-  owner_lookup_param :workflow_token
-  owner_lookup_field :token
-
-  resource_lookup_param :token
-  resource_permitted_params [:name, :input_type, :text_field_type, :default_value, :characters, :mask, :duplicate_answer_token]
+  belongs_to :workflow, foreign_key: :token
+  lookup_param :token
+  attr_permitted :name, :input_type, :text_field_type, :default_value,
+                 :characters, :mask, :duplicate_answer_token
 
   private
 

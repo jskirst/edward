@@ -1,7 +1,7 @@
 Feature: Workflows
 
   Background:
-    Given I am Andy Developer
+    Given I am Developer Alpha
     And I send and accept JSON
 
   Scenario: System prevents access without api_key
