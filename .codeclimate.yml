@@ -1,8 +1,6 @@
 engines:
   rubocop:
     enabled: true
-    AllCops:
-      TargetRubyVersion: 2.3.4
   brakeman:
     enabled: true
   eslint:
@@ -21,5 +19,6 @@ ratings:
   - lib/**
   - "**.rb"
 exclude_paths:
+- config/**/*
 - features/**/*
 - "**/vendor/**/*"
