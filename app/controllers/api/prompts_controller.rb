@@ -16,7 +16,7 @@ class Api::PromptsController < ActionController::API
     render json: { error: e }, status: 500
   end
 
-  rescue_from Rapido::Errors::RecordNotFound do |e|
+  rescue_from Rapido::Errors::RecordNotFound do |_e|
     render json: { error: 'Workflow not found.' }, status: 404
   end
 
