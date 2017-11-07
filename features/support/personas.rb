@@ -52,6 +52,11 @@ end
 
 Cucumber::Persona.define "Attri Butes" do
   wf = Workflow.find_or_create_by(token: 'attributes', account: Account.create!)
+  Step.create!(token: "color",
+               workflow: wf,
+               text: "Color?{{@color[font-style=Times New Roman][bold=true]}}",
+               conditions: "color!=")
+
   Step.create!(token: "attributes",
                workflow: wf,
                text: "How great?{{@how_great[bold=true]}}",
