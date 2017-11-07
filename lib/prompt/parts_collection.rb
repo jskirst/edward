@@ -57,7 +57,7 @@ class PartsCollection
     attributes = {}
     item_parts.each do |i|
       name, value = i.split("=")
-      attributes[name] = value.gsub(']','')
+      attributes[name] = value.delete(']')
     end
     { type: "text", content: facts[item_name] }.merge(attributes)
   end
