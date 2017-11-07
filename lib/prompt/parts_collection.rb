@@ -23,37 +23,56 @@ class PartsCollection
   def to_a
     items.map do |item|
       if item.starts_with?("{") && item.ends_with?("}")
-        item.gsub!(/[\{\}]/, '')
-        item_type = item[0]
-        item[0] = ''
+        item = item.slice(1..-2)
+        item_type = item.slice!(0)
         if item_type == '?'
-          name = item.split('=')[0]
-          answer = answers[name]
-          raise AnswerNotFound, "No Answer found for name: #{name}" unless answer
-          answer.merge!(name: name)
-          answer.merge!(value: facts[name]) if facts[name]
-          answer
+          new_question(item)
         elsif item_type == '@'
-          item_parts = item.split("[")
-          item_name = item_parts.shift
-          attributes = {}
-          item_parts.each do |i|
-            name, value = i.split("=")
-            attributes[name] = value.gsub(']','')
-          end
-          { type: "text", content: facts[item_name] }.merge(attributes)
+          new_value(item)
         elsif item_type == '$'
-          path = JsonPath.new('$'+item)
-          { type: "text", content: path.on(facts.to_json).first }
+          new_json(item)
         else
           raise 'Unknown item type: ' + item_type
         end
       elsif item == "\n"
-        { type: "newline" }
+        new_newline
       else
-        { type: "text", content: item }
+        new_text(item)
       end
     end
+  end
+
+  def new_question(item)
+    name = item.split('=')[0]
+    answer = answers[name]
+    raise AnswerNotFound, "No Answer found for name: #{name}" unless answer
+    answer.merge!(name: name)
+    answer.merge!(value: facts[name]) if facts[name]
+    answer
+  end
+
+  def new_value(item)
+    item_parts = item.split("[")
+    item_name = item_parts.shift
+    attributes = {}
+    item_parts.each do |i|
+      name, value = i.split("=")
+      attributes[name] = value.gsub(']','')
+    end
+    { type: "text", content: facts[item_name] }.merge(attributes)
+  end
+
+  def new_json(item)
+    path = JsonPath.new('$'+item)
+    { type: "text", content: path.on(facts.to_json).first }
+  end
+
+  def new_newline
+    { type: "newline" }
+  end
+
+  def new_text(item)
+    { type: "text", content: item }
   end
 
   class AnswerNotFound < StandardError; end

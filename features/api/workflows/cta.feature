@@ -11,8 +11,7 @@ Feature: Call-to-Action (CTA)
       "facts": {}
     }
     """
-    Then the response status should be "201"
-    And the JSON response should be:
+    Then the JSON response should be:
     """
     {
       "token": "hello",
@@ -25,3 +24,4 @@ Feature: Call-to-Action (CTA)
       ]
     }
     """
+    And the response status should be "201"
