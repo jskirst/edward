@@ -18,7 +18,9 @@ Feature: JSONPath
       "token": "jsonpath",
       "text": "Today's weather is {{$.weather.days[0].summary}}.",
       "parts": [
-        { "type": "text", "content": "Today's weather is " },
+        { "type": "text", "content": "Today's" },
+        { "type": "text", "content": "weather" },
+        { "type": "text", "content": "is" },
         { "type": "text", "content": "sunny" },
         { "type": "text", "content": "." }
       ]

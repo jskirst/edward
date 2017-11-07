@@ -15,9 +15,10 @@ Feature: Simulated authentication and introduction flow
     """
     {
       "token": "phone",
-      "text": "Texting a token to your phone.\n{{?user_phone_number}}",
+      "text": "Texting token.\n{{?user_phone_number}}",
       "parts": [
-        { "type": "text", "content": "Texting a token to your phone." },
+        { "type": "text", "content": "Texting" },
+        { "type": "text", "content": "token." },
         { "type": "newline" },
         { "type": "short_text", "name": "user_phone_number", "text_field_type": "number", "characters": 11, "mask": "(###) ###-####" }
       ]
@@ -39,9 +40,11 @@ Feature: Simulated authentication and introduction flow
     """
     {
       "token": "confirmation",
-      "text": "Please enter the 4 digit number that was just sent to your phone.\n{{?user_confirmation_token}}",
+      "text": "Please enter code.\n{{?user_confirmation_token}}",
       "parts": [
-        { "type": "text", "content": "Please enter the 4 digit number that was just sent to your phone." },
+        { "type": "text", "content": "Please" },
+        { "type": "text", "content": "enter" },
+        { "type": "text", "content": "code." },
         { "type": "newline" },
         { "type": "short_text", "name": "user_confirmation_token", "text_field_type": "number", "characters": 6, "mask": "####" }
       ]
@@ -63,10 +66,10 @@ Feature: Simulated authentication and introduction flow
     """
     {
       "token": "thankyou",
-      "text": "Thank you! Welcome to the application.{{?auth_token}}",
+      "text": "Thank you!{{?auth_token}}",
       "parts": [
-        { "type": "text", "content": "Thank you!" },
-        { "type": "text", "content": " Welcome to the application." },
+        { "type": "text", "content": "Thank" },
+        { "type": "text", "content": "you!" },
         { "type": "hidden", "name": "auth_token", "value": "1234" }
       ]
     }

@@ -134,7 +134,7 @@ Cucumber::Persona.define "Arthur Dent" do
 
   Step.create!(token: "phone",
                workflow: wf,
-               text: "Texting a token to your phone.\n{{?user_phone_number}}",
+               text: "Texting token.\n{{?user_phone_number}}",
                conditions: "user_phone_number=")
   Answer.create!(workflow: wf,
                  token: "user_phone_number", name: "user_phone_number",
@@ -145,7 +145,7 @@ Cucumber::Persona.define "Arthur Dent" do
 
   Step.create!(workflow: wf,
                token: "confirmation",
-               text: "Please enter the 4 digit number that was just sent to your phone.\n{{?user_confirmation_token}}",
+               text: "Please enter code.\n{{?user_confirmation_token}}",
                conditions: "user_phone_number!=&user_confirmation_token=",
                callout: "https://www.callout.com/api/v1/users",
                callout_method: "post",
@@ -159,7 +159,7 @@ Cucumber::Persona.define "Arthur Dent" do
 
   Step.create!(workflow: wf,
                token: "thankyou",
-               text: "Thank you! Welcome to the application.{{?auth_token}}",
+               text: "Thank you!{{?auth_token}}",
                conditions: "user_confirmation_token!=&auth_token=",
                callout: "https://www.callout.com/api/v1/sessions",
                callout_method: "post",
