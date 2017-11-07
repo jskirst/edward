@@ -15,6 +15,8 @@ class PartsCollection
                  .flatten
                  .map { |i| i.start_with?("{") ? [i] : i.split(/(\n)/) } # split out new lines
                  .flatten
+                 .map { |i| (i.start_with?("{") || i == "\n") ? [i] : i.split(' ') }
+                 .flatten
                  .select { |i| i != '' } # remove empty items
   end
 
@@ -32,7 +34,14 @@ class PartsCollection
           answer.merge!(value: facts[name]) if facts[name]
           answer
         elsif item_type == '@'
-          { type: "text", content: facts[item] }
+          item_parts = item.split("[")
+          item_name = item_parts.shift
+          attributes = {}
+          item_parts.each do |i|
+            name, value = i.split("=")
+            attributes[name] = value.gsub(']','')
+          end
+          { type: "text", content: facts[item_name] }.merge(attributes)
         elsif item_type == '$'
           path = JsonPath.new('$'+item)
           { type: "text", content: path.on(facts.to_json).first }

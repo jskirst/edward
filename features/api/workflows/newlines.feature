@@ -17,9 +17,13 @@ Feature: New lines
       "token": "newline",
       "text": "Texting a token\nto your phone.",
       "parts": [
-        { "type": "text", "content": "Texting a token" },
+        { "type": "text", "content": "Texting" },
+        { "type": "text", "content": "a" },
+        { "type": "text", "content": "token" },
         { "type": "newline" },
-        { "type": "text", "content": "to your phone." }
+        { "type": "text", "content": "to" },
+        { "type": "text", "content": "your" },
+        { "type": "text", "content": "phone." }
       ]
     }
     """

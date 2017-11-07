@@ -50,6 +50,14 @@ Cucumber::Persona.define "New Line" do
                conditions: "newline=")
 end
 
+Cucumber::Persona.define "Attri Butes" do
+  wf = Workflow.find_or_create_by(token: 'attributes', account: Account.create!)
+  Step.create!(token: "attributes",
+               workflow: wf,
+               text: "How great?{{@how_great[bold=true]}}",
+               conditions: "how_great!=")
+end
+
 Cucumber::Persona.define "Callto Action" do
   wf = Workflow.find_or_create_by(token: 'cta', account: Account.create!)
   Step.create!(token: "hello",
