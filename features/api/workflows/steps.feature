@@ -17,6 +17,7 @@ Feature: Steps API
     {
       "token": "intro",
       "text": "My first name is {{?user_first_name}}, and my last name is {{?user_last_name}}, and I am {{?user_age}} years old. Generally I prefer {{?user_style_preference}} wines.",
+      "cta": "next",
       "parts": [
         { "type": "text", "content": "My" },
         { "type": "text", "content": "first" },
@@ -70,6 +71,7 @@ Feature: Steps API
     {
       "token": "hello",
       "text": "Hello {{@user_first_name}}, would you like any recommendations?\n{{?user_desires_recommendations}}",
+      "cta": "next",
       "parts": [
         { "type": "text", "content": "Hello" },
         { "type": "text", "content": "Giles" },
@@ -110,6 +112,7 @@ Feature: Steps API
     {
       "token": "finethen",
       "text": "Well, fine then.",
+      "cta": "next",
       "parts": [
         { "type": "text", "content": "Well," },
         { "type": "text", "content": "fine" },
@@ -136,6 +139,7 @@ Feature: Steps API
     {
       "token": "really",
       "text": "Really? Splendid! Superb. I recommend the {{@recommendation}}.",
+      "cta": "next",
       "parts": [
         { "type": "text", "content": "Really?" },
         { "type": "text", "content": "Splendid!" },
@@ -167,6 +171,7 @@ Feature: Steps API
     {
       "token": "recommendation",
       "text": "I recommend the {{@recommendation}}.\n{{?recommendation}}",
+      "cta": "next",
       "parts": [
         { "type": "text", "content": "I" },
         { "type": "text", "content": "recommend" },
