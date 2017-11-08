@@ -79,7 +79,12 @@ class PartsCollection
   end
 
   def new_text(item)
-    { type: "text", content: item }
+    attrs = {}
+    if item.start_with?("**")
+      item.slice!(0,2)
+      attrs['bold'] = 'true'
+    end
+    { type: "text", content: item }.merge(attrs)
   end
 
   class AnswerNotFound < StandardError; end
