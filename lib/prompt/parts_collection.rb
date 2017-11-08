@@ -43,23 +43,30 @@ class PartsCollection
   end
 
   def new_question(item)
-    name = item.split('=')[0]
+    item_parts = item.split("[")
+    name = item_parts.shift.split('=')[0]
     answer = answers[name]
     raise AnswerNotFound, "No Answer found for name: #{name}" unless answer
     answer.merge!(name: name)
     answer.merge!(value: facts[name]) if facts[name]
+    answer.merge!(extract_attributes(item_parts))
     answer
   end
 
   def new_value(item)
     item_parts = item.split("[")
     item_name = item_parts.shift
+    { type: "text", content: facts[item_name] }.merge(extract_attributes(item_parts))
+  end
+
+  def extract_attributes(item_parts)
     attributes = {}
     item_parts.each do |i|
       name, value = i.split("=")
-      attributes[name] = value.delete(']')
+      value = value.delete(']')
+      attributes[name] = value.start_with?("@") ? facts[value.slice(1..-1)] : value
     end
-    { type: "text", content: facts[item_name] }.merge(attributes)
+    attributes
   end
 
   def new_json(item)

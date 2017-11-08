@@ -14,9 +14,8 @@ class AnswersCollection
   end
 
   def find_by_name(name)
-    name_and_value = name.split('=')
-    name = name_and_value[0]
-    value = name_and_value[1]&.gsub("'", '')
+    name, value = name.split("[").shift.split('=')
+    value = value&.delete("'")
     answer = step.workflow.answers.find_by(name: name)
     raise AnswerNotFound, "No Answer found for name: #{name}" unless answer
     answer.default_value = value if value
