@@ -43,6 +43,23 @@ Cucumber::Persona.define "Ragnar Lothbrok" do
   Answer.create!(workflow: wf, token: "recommendation", name: "recommendation", input_type: "hidden")
 end
 
+Cucumber::Persona.define "Call Out" do
+  wf = Workflow.create!(token: 'callout', account: Account.create!)
+  wf.steps.create!(token: "guess", text: "Pick a number.\n{{?number}}",
+               conditions: "number=", cta: 'Guess')
+  Answer.create!(workflow: wf, token: "number", name: "number", input_type: "short_text", characters: 3, text_field_type: 'text', mask: "#")
+
+  wf.steps.create!(token: "result",
+                   text: "You got it!{{@secret}}",
+                   callout: "http://www.callout.com/number?number={{number}}",
+                   callout_method: "get",
+                   conditions: 'number!=',
+                   callout_success: '$..secret',
+                   callout_failure_text: "Wrong!{{@error}}\n{{?number}}",
+                   callout_failure_cta: "Guess Again"
+                  )
+end
+
 Cucumber::Persona.define "New Line" do
   wf = Workflow.find_or_create_by(token: 'newline', account: Account.create!)
   Step.create!(token: "newline",
