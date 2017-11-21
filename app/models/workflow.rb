@@ -1,3 +1,5 @@
+require 'prompt/factory'
+
 class Workflow < ActiveRecord::Base
   belongs_to :account
   has_many :steps

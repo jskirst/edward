@@ -1,4 +1,6 @@
-class Factory
+require 'prompt'
+
+class Prompt::Factory
   attr_reader :workflow
 
   def initialize(workflow)

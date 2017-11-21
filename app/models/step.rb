@@ -40,6 +40,10 @@ class Step < ActiveRecord::Base
        end
   end
 
+  def callout_url
+    callout
+  end
+
   def to_h
     {
       token: token,
@@ -48,7 +52,7 @@ class Step < ActiveRecord::Base
       cta: cta,
       cta_class: cta_class,
       cta_href: cta_href,
-      callout: callout,
+      callout: callout_url,
       callout_method: callout_method,
       callout_body: callout_body
     }

@@ -4,7 +4,7 @@ Feature: Callouts
     Given I am Call Out
     And I send and accept JSON
 
-  Scenario:
+  Scenario: Steps without callouts
     When I send a POST request to "/api/workflows/callout/prompts" with the following:
     """
     {
@@ -28,7 +28,7 @@ Feature: Callouts
     """
     And the response status should be "201"
 
-  Scenario:
+  Scenario: Steps with successful callout response
     When I send a POST request to "/api/workflows/callout/prompts" with the following:
     """
     {
@@ -52,7 +52,7 @@ Feature: Callouts
     }
     """
 
-  Scenario:
+  Scenario: Steps with failed callout response
     When I send a POST request to "/api/workflows/callout/prompts" with the following:
     """
     {

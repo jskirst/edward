@@ -1,13 +1,13 @@
 require 'prompt/parts_collection'
 require 'prompt/facts_collection'
 require 'prompt/answers_collection'
-require 'prompt/factory'
+require 'prompt/callout'
 
 class Prompt
   attr_reader :step, :user_facts
 
   delegate :text, :token, :cta, :cta_class, :cta_href,
-    :callout, :callout_body, :callout_method, :callout_success,
+    :callout_url, :callout_body, :callout_method, :callout_success,
     :callout_failure_text, :callout_failure_cta, to: :step
 
   def initialize(step:, user_facts:)
@@ -38,15 +38,22 @@ class Prompt
     end
   end
 
-  def answers(text: text)
+  def answers(text:)
     @answers ||= AnswersCollection.new(step: step, text: text, facts: facts).to_h
   end
 
   def facts
     @facts ||= begin
-      facts_collection = FactsCollection.new(text, @user_facts, callout, callout_method, callout_body, callout_success)
-      @callout_successful = facts_collection.make_callout
-      facts_collection.to_h
+      if callout_url
+        callout = Callout.new(url: callout_url,
+                              method: callout_method,
+                              body: callout_body,
+                              success: callout_success,
+                              facts: user_facts)
+        user_facts.merge!(callout.make)
+      end
+      @callout_successful = callout ? callout.successful? : true
+      user_facts
     end
   end
 end
