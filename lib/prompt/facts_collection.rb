@@ -23,7 +23,7 @@ class FactsCollection
     else
       body_template = Liquid::Template.parse(callout_body)
       body = body_template.render(user_facts)
-      @callout_response = HTTParty.post(url, { body: body }).parsed_response&.symbolize_keys
+      @callout_response = HTTParty.post(url, { body: body })
     end
     @callout_facts = @callout_response.parsed_response&.symbolize_keys
     return callout_successful?

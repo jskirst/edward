@@ -5,7 +5,8 @@ class StepsController < ApplicationController
   belongs_to :workflow, foreign_key: :token
   lookup_param :token
   attr_permitted :text, :conditions, :duplicate_step_token, :cta, :cta_class,
-                 :cta_href, :callout, :callout_method, :callout_body
+                 :cta_href, :callout, :callout_method, :callout_body, :callout_failure_text,
+                 :callout_failure_cta, :callout_success
 
   private
 
