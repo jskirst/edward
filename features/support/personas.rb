@@ -66,16 +66,20 @@ Cucumber::Persona.define "Call Out" do
     .to_return(status: 404, body: '{"error": "It was something else."}', headers: { 'Content-Type' => "application/json" })
 
   wf.steps.create!(token: "present",
-                   text: "And accounted for!",
-                   callout: "http://www.callout.com/present",
+                   text: "Present! {{$..present}}",
+                   callout: "http://www.callout.com/present?present={{present}}",
                    callout_method: "get",
-                   conditions: 'present=true',
-                   callout_success: "$..present[?(@['value'])]",
+                   conditions: 'present!=',
+                   callout_success: "$..present[?(@['present'])]",
                    callout_failure_text: "Not present",
+                   callout_failure_cta: "Oh well"
                   )
 
-  stub_request(:get, /http:\/\/www.callout.com\/present/)
-    .to_return(status: 200, body: '{"present": true}', headers: { 'Content-Type' => "application/json" })
+  stub_request(:get, /http:\/\/www.callout.com\/present\?present=true/)
+    .to_return(status: 200, body: '{"present": "And accounted for!"}', headers: { 'Content-Type' => "application/json" })
+
+  stub_request(:get, /http:\/\/www.callout.com\/present\?present=false/)
+    .to_return(status: 200, body: '{"notpresent": "true"}', headers: { 'Content-Type' => "application/json" })
 end
 
 Cucumber::Persona.define "New Line" do

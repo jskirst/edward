@@ -49,7 +49,7 @@ Feature: Callouts
         { "type": "text", "content": "got" },
         { "type": "text", "content": "it!" },
         { "type": "text", "content": "Secret:" },
-        { "type": "text", "content": 123 }
+        { "type": "text", "content": "123" }
       ]
     }
     """
@@ -91,11 +91,33 @@ Feature: Callouts
     """
     {
       "token": "present",
-      "text": "And accounted for!",
+      "text": "Present! {{$..present}}",
       "parts": [
+        { "type": "text", "content": "Present!" },
         { "type": "text", "content": "And" },
         { "type": "text", "content": "accounted" },
         { "type": "text", "content": "for!" }
+      ]
+    }
+    """
+
+  Scenario: Steps with unsuccessful callout response testing presence of boolean
+    When I send a POST request to "/api/workflows/callout/prompts" with the following:
+    """
+    {
+    "facts": { "present": "false"}
+    }
+    """
+    Then the response status should be "201"
+    And the JSON response should be:
+    """
+    {
+      "token": "present",
+      "text": "Not present",
+      "cta": "Oh well",
+      "parts": [
+        { "type": "text", "content": "Not" },
+        { "type": "text", "content": "present" }
       ]
     }
     """

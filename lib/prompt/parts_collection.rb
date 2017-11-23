@@ -41,7 +41,7 @@ class PartsCollection
       else
         new_text(item)
       end
-    end
+    end.flatten
   end
 
   def new_question(item)
@@ -79,7 +79,10 @@ class PartsCollection
 
   def new_json(item)
     path = JsonPath.new('$'+item)
-    { type: "text", content: path.on(facts.to_json).first }
+    content = path.on(facts.to_json).first
+    content.to_s.split(" ").map do |c|
+      new_text(c)
+    end
   end
 
   def new_newline
