@@ -59,11 +59,13 @@ Cucumber::Persona.define "Call Out" do
                    callout_failure_cta: "Guess Again"
                   )
 
-  stub_request(:get, "http://www.callout.com/number?number=1")
-    .to_return(status: 200, body: '{"secret": [{ "value": 123}] }', headers: { 'Content-Type' => "application/json" })
+  if Rails.env.test?
+    stub_request(:get, "http://www.callout.com/number?number=1")
+      .to_return(status: 200, body: '{"secret": [{ "value": 123}] }', headers: { 'Content-Type' => "application/json" })
 
-  stub_request(:get, /http:\/\/www.callout.com\/number\?number=[2-9]/)
-    .to_return(status: 404, body: '{"error": "It was something else."}', headers: { 'Content-Type' => "application/json" })
+    stub_request(:get, /http:\/\/www.callout.com\/number\?number=[2-9]/)
+      .to_return(status: 404, body: '{"error": "It was something else."}', headers: { 'Content-Type' => "application/json" })
+  end
 
   wf.steps.create!(token: "present",
                    text: "Present! {{$..present}}",
@@ -75,11 +77,13 @@ Cucumber::Persona.define "Call Out" do
                    callout_failure_cta: "Oh well"
                   )
 
-  stub_request(:get, /http:\/\/www.callout.com\/present\?present=true/)
-    .to_return(status: 200, body: '{"present": "And accounted for!"}', headers: { 'Content-Type' => "application/json" })
+  if Rails.env.test?
+    stub_request(:get, /http:\/\/www.callout.com\/present\?present=true/)
+      .to_return(status: 200, body: '{"present": "And accounted for!"}', headers: { 'Content-Type' => "application/json" })
 
-  stub_request(:get, /http:\/\/www.callout.com\/present\?present=false/)
-    .to_return(status: 200, body: '{"notpresent": "true"}', headers: { 'Content-Type' => "application/json" })
+    stub_request(:get, /http:\/\/www.callout.com\/present\?present=false/)
+      .to_return(status: 200, body: '{"notpresent": "true"}', headers: { 'Content-Type' => "application/json" })
+  end
 end
 
 Cucumber::Persona.define "New Line" do

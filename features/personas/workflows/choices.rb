@@ -15,8 +15,8 @@ Cucumber::Persona.define "Choices" do
 
   Step.create!(token: "one",
                workflow: wf,
-               text: "You selected choice 1. {{!'Go to choice 2?'[facts=one%3Dtrue&two%3Dtrue]}}",
-               conditions: "one=true&two!=false")
+               text: "You selected choice 1. {{!'Go to choice 2?'[facts=one%3Dfalse&two%3Dtrue]}}",
+               conditions: "one=true&two!=true")
 
   Step.create!(token: "two",
                workflow: wf,

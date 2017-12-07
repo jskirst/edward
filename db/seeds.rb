@@ -7,5 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'cucumber/persona'
 require_relative '../features/support/personas'
+require_relative '../features/personas/workflows/choices'
 
 Cucumber::Persona.create_all

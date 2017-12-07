@@ -37,13 +37,13 @@ Feature: Links
     """
     {
       "token": "one",
-      "text": "You selected choice 1. {{!'Go to choice 2?'[facts=one%3Dtrue&two%3Dtrue]}}",
+      "text": "You selected choice 1. {{!'Go to choice 2?'[facts=one%3Dfalse&two%3Dtrue]}}",
       "parts": [
         { "type": "text", "content": "You" },
         { "type": "text", "content": "selected" },
         { "type": "text", "content": "choice" },
         { "type": "text", "content": "1." },
-        { "type": "choice", "content": "Go to choice 2?", "facts": "one%3Dtrue&two%3Dtrue" }
+        { "type": "choice", "content": "Go to choice 2?", "facts": "one%3Dfalse&two%3Dtrue" }
       ]
     }
     """
