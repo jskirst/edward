@@ -8,7 +8,7 @@ class PartsCollection
   end
 
   def items
-    @items ||= text.split(/\{(\{[?@\$#][^{]+\})\}/)
+    @items ||= text.split(/\{(\{[!?@\$#][^{]+\})\}/)
                  .map { |i| i.start_with?("{") ? [i] : i.split(/^([\.\?!,])/) } # split out punctuation that occurs at the beginning
                  .flatten
                  .map { |i| i.start_with?("{") ? [i] : i.split(/([^\.\?,!\{\}]+[\.\?!,]+)/) } # split out punctuation that does not occur at beginning but is not inside liquid block
@@ -33,6 +33,8 @@ class PartsCollection
           new_json(item)
         elsif item_type == '#'
           new_link(item)
+        elsif item_type == '!'
+          new_choice(item)
         else
           raise 'Unknown item type: ' + item_type
         end
@@ -65,6 +67,12 @@ class PartsCollection
     item_parts = item.split("[")
     item_text = item_parts.shift
     { type: "link", content: item_text.delete("'") }.merge(extract_attributes(item_parts))
+  end
+
+  def new_choice(item)
+    item_parts = item.split("[")
+    item_text = item_parts.shift
+    { type: "choice", content: item_text.delete("'") }.merge(extract_attributes(item_parts))
   end
 
   def extract_attributes(item_parts)
