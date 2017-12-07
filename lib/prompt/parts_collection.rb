@@ -72,7 +72,8 @@ class PartsCollection
   def new_choice(item)
     item_parts = item.split("[")
     item_text = item_parts.shift
-    { type: "choice", content: item_text.delete("'") }.merge(extract_attributes(item_parts))
+    attributes = extract_attributes(item_parts)
+    { type: "choice", content: item_text.delete("'") }.merge(attributes)
   end
 
   def extract_attributes(item_parts)
