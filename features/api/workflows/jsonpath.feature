@@ -22,7 +22,7 @@ Feature: JSONPath
         { "type": "text", "content": "weather" },
         { "type": "text", "content": "is" },
         { "type": "text", "content": "sunny" },
-        { "type": "text", "content": "." }
+        { "type": "punctuation", "content": "." }
       ]
     }
     """

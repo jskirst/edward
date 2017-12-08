@@ -40,6 +40,8 @@ class PartsCollection
         end
       elsif item == "\n"
         new_newline
+      elsif ['?', '!', '.', ','].include?(item)
+        new_punctuation(item)
       else
         new_text(item)
       end
@@ -96,6 +98,10 @@ class PartsCollection
 
   def new_newline
     { type: "newline" }
+  end
+
+  def new_punctuation(item)
+    { type: 'punctuation', content: item }
   end
 
   def new_text(item)

@@ -24,14 +24,14 @@ Feature: Steps API
         { "type": "text", "content": "name" },
         { "type": "text", "content": "is" },
         { "type": "short_text", "name": "user_first_name", "text_field_type": "text", "characters": 8 },
-        { "type": "text", "content": "," },
+        { "type": "punctuation", "content": "," },
         { "type": "text", "content": "and" },
         { "type": "text", "content": "my" },
         { "type": "text", "content": "last" },
         { "type": "text", "content": "name" },
         { "type": "text", "content": "is" },
         { "type": "short_text", "name": "user_last_name", "text_field_type": "text", "characters": 10 },
-        { "type": "text", "content": "," },
+        { "type": "punctuation", "content": "," },
         { "type": "text", "content": "and" },
         { "type": "text", "content": "I" },
         { "type": "text", "content": "am" },
@@ -75,7 +75,7 @@ Feature: Steps API
       "parts": [
         { "type": "text", "content": "Hello" },
         { "type": "text", "content": "Giles" },
-        { "type": "text", "content": "," },
+        { "type": "punctuation", "content": "," },
         { "type": "text", "content": "would" },
         { "type": "text", "content": "you" },
         { "type": "text", "content": "like" },
@@ -148,7 +148,7 @@ Feature: Steps API
         { "type": "text", "content": "recommend" },
         { "type": "text", "content": "the" },
         { "type": "text", "content": "Russian River Chardonnay" },
-        { "type": "text", "content": "." }
+        { "type": "punctuation", "content": "." }
       ]
     }
     """
@@ -177,7 +177,7 @@ Feature: Steps API
         { "type": "text", "content": "recommend" },
         { "type": "text", "content": "the" },
         { "type": "text", "content": "Pinot Noir" },
-        { "type": "text", "content": "." },
+        { "type": "punctuation", "content": "." },
         { "type": "newline" },
         { "type": "hidden", "name": "recommendation", "value": "Pinot Noir" }
       ]
