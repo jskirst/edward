@@ -31,23 +31,35 @@ class Step < ActiveRecord::Base
     URI.unescape(conditions)
        .split('&')
        .all? do |f|
-         if f.include?("=")
-           key, value = f.split("=")
-           if key.ends_with?('!')
-             data[key[0..-2]].to_s != value.to_s
-           else
-             data[key].to_s == value.to_s
-           end
-         elsif f.include?(">")
-           key, value = f.split(">")
-           data[key].to_i > value.to_i
-         elsif f.include?("<")
-           key, value = f.split("<")
-           data[key].to_i < value.to_i
+         if f.include?('=')
+           equals?(f, data)
+         elsif f.include?('>')
+           greater_than?(f, data)
+         elsif f.include?('<')
+           less_than?(f, data)
          else
            raise "Bad comparator: #{f}"
          end
        end
+  end
+
+  def equals?(str, data)
+    key, value = str.split('=')
+    if key.ends_with?('!')
+      data[key[0..-2]].to_s != value.to_s
+    else
+      data[key].to_s == value.to_s
+    end
+  end
+
+  def greater_than?(str, data)
+    key, value = str.split('>')
+    data[key].to_i > value.to_i
+  end
+
+  def less_than?(str, data)
+    key, value = str.split('<')
+    data[key].to_i < value.to_i
   end
 
   def callout_url
