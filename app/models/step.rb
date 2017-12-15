@@ -30,12 +30,22 @@ class Step < ActiveRecord::Base
   def match?(data)
     URI.unescape(conditions)
        .split('&')
-       .map { |c| c.split('=') }
-       .all? do |key, value|
-         if key.ends_with?('!')
-           data[key[0..-2]].to_s != value.to_s
+       .all? do |f|
+         if f.include?("=")
+           key, value = f.split("=")
+           if key.ends_with?('!')
+             data[key[0..-2]].to_s != value.to_s
+           else
+             data[key].to_s == value.to_s
+           end
+         elsif f.include?(">")
+           key, value = f.split(">")
+           data[key].to_i > value.to_i
+         elsif f.include?("<")
+           key, value = f.split("<")
+           data[key].to_i < value.to_i
          else
-           data[key].to_s == value.to_s
+           raise "Bad comparator: #{f}"
          end
        end
   end
