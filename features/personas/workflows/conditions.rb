@@ -10,6 +10,10 @@ Cucumber::Persona::define "Conditions" do
                conditions: "count=1")
   Step.create!(token: "greaterthen",
                workflow: wf,
-               text: "Count is: {{@count}}",
-               conditions: "count>1")
+               text: "Count is > 3",
+               conditions: "count>3")
+  Step.create!(token: "lessthen",
+               workflow: wf,
+               text: "Count is < 3",
+               conditions: "count<3")
 end
