@@ -7,7 +7,7 @@ class Prompt::Factory
     @workflow = workflow
   end
 
-  def new(facts)
+  def build(facts)
     facts = facts.to_h["facts"]
     matched_step = workflow.steps.find { |step| step.match?(facts) }
     return Prompt.new(step: matched_step, user_facts: facts) if matched_step

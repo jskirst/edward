@@ -1,7 +1,9 @@
 require 'cucumber/rails'
 require 'rspec/matchers'
-require 'spreewald/all_steps'
 require 'cucumber/api_steps'
+require 'cucumber/sammies/step_definitions/form_steps'
+require 'cucumber/sammies/step_definitions/navigation_steps'
+require 'cucumber/sammies/step_definitions/content_steps'
 
 ActionController::Base.allow_rescue = true
 ActiveRecord::Migration.maintain_test_schema!
