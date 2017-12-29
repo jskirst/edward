@@ -1,7 +1,7 @@
 Feature: New lines
 
   Background:
-    Given I am New Line
+    Given the "New Line" workflow exists
     And I send and accept JSON
 
   Scenario: Split text divided by new line

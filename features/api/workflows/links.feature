@@ -1,7 +1,7 @@
 Feature: Links
 
   Background:
-    Given I am Embedded Link
+    Given the "Embedded Link" workflow exists
     And I send and accept JSON
 
   Scenario: Pass attributes along with value

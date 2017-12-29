@@ -1,7 +1,7 @@
 Feature: Simulated authentication and introduction flow
 
   Background:
-    Given I am Arthur Dent
+    Given the "Auth Example" workflow exists
     And I send and accept JSON
 
   Scenario:

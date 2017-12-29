@@ -114,7 +114,7 @@ group :development, :test do
   # Use: Debugging plugin for Pry
   # URL: https://github.com/deivid-rodriguez/pry-byebug
 
-  gem 'cucumber-persona'
+  gem 'cucumber-persona', '~> 0.2'
   # Use: Test data population
   # URL: https://github.com/starfighterheavy/cucumber-persona
 end

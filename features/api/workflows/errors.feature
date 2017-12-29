@@ -19,7 +19,7 @@ Feature: Error handling
     """
 
   Scenario: Matching step not found
-    Given I am Cannot Match
+    Given the "Cannot Match" workflow exists
     When I send a POST request to "/api/workflows/cannotmatch/prompts" with the following:
     """
     {
@@ -35,7 +35,7 @@ Feature: Error handling
     """
 
   Scenario: Answer not found
-    Given I am Nosuch Answer
+    Given the "Nosuch Answer" workflow exists
     When I send a POST request to "/api/workflows/nosuchanswer/prompts" with the following:
     """
     {
@@ -49,4 +49,3 @@ Feature: Error handling
       "error": "No Answer found for name: doesnotexist"
     }
     """
-

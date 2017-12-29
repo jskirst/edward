@@ -1,7 +1,7 @@
 Feature: Steps API
 
   Background:
-    Given I am Ragnar Lothbrok
+    Given the "Abc" workflow exists
     And I send and accept JSON
 
   Scenario: Create inline step with multiple answers

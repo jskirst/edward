@@ -1,8 +1,8 @@
 Feature: Steps
 
   Background:
-    Given I am Ben Franklin
-    And Martha Washington exists
+    Given I am "Ben Franklin"
+    And "Martha Washington" exists
     And I go to the new user session page
     And I fill in "Email" with "ben@franklin.com"
     And I fill in "Password" with "Password1"

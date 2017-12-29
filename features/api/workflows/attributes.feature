@@ -1,7 +1,7 @@
 Feature: Attributes
 
   Background:
-    Given I am Attri Butes
+    Given the "Attributes" workflow exists
     And I send and accept JSON
 
   Scenario: Pass attributes along with value

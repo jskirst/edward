@@ -1,7 +1,7 @@
 Feature: Call-to-Action (CTA)
 
   Background:
-    Given I am Callto Action
+    Given the "Cta" workflow exists
     And I send and accept JSON
 
   Scenario: Step returns CTA if present

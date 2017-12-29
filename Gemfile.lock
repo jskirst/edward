@@ -81,7 +81,7 @@ GEM
       cucumber-tag_expressions (~> 1.1.0)
       gherkin (>= 5.0.0)
     cucumber-expressions (5.0.7)
-    cucumber-persona (0.1.0)
+    cucumber-persona (0.2.0)
     cucumber-rails (1.5.0)
       capybara (>= 1.1.2, < 3)
       cucumber (>= 1.3.8, < 4)
@@ -276,7 +276,7 @@ DEPENDENCIES
   bootstrap (= 4.0.0.beta2.1)
   capybara (~> 2.16.0)
   cucumber-api-steps (~> 0.14)
-  cucumber-persona
+  cucumber-persona (~> 0.2)
   cucumber-rails (~> 1.5)
   cucumber-sammies (~> 0.1)
   database_cleaner (~> 1.6)

@@ -4,7 +4,7 @@ Feature: Answers
     Given I send and accept JSON
 
   Scenario: Answer with numbers in name
-    Given I am Alpha Numeric
+    Given the "Alpha Numeric" workflow exists
     When I send a POST request to "/api/workflows/alphanumeric/prompts" with the following:
     """
     {
@@ -25,7 +25,7 @@ Feature: Answers
     And the response status should be "201"
 
   Scenario: Answers with default_value set in the step text should return that value
-    Given I am Default Textvalue
+    Given the "Default Textvalue" workflow exists
     When I send a POST request to "/api/workflows/defaulttextvalue/prompts" with the following:
     """
     {
@@ -47,7 +47,7 @@ Feature: Answers
 
 
   Scenario: Answers with default_value set should return them
-    Given I am Default Value
+    Given the "Default Value" workflow exists
     When I send a POST request to "/api/workflows/defaultvalue/prompts" with the following:
     """
     {

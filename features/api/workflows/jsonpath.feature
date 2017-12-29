@@ -1,7 +1,7 @@
 Feature: JSONPath
 
   Background:
-    Given I am Json Path
+    Given the "Json Path" workflow exists
     And I send and accept JSON
 
   Scenario: Steps can return data parsed from callout response JSON with JSONPath

@@ -1,7 +1,7 @@
 Feature: Text decoration
 
   Background:
-    Given I am Text Decoration
+    Given the "Text Decoration" workflow exists
     And I send and accept JSON
 
   Scenario: Pass attributes along with value

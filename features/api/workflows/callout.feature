@@ -1,7 +1,7 @@
 Feature: Callouts
 
   Background:
-    Given I am Call Out
+    Given the "Call Out" workflow exists
     And I send and accept JSON
 
   # Note: Only comparison with integers and floats works
