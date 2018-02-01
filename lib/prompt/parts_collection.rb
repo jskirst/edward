@@ -8,7 +8,7 @@ class PartsCollection
   end
 
   def items
-    @items ||= text.split(/\{(\{[!?@\$#][^{]+\})\}/)
+    @items ||= text.split(/\{(\{[&!?@\$#][^{]+\})\}/)
                  .map { |i| i.start_with?("{") ? [i] : i.split(/^([\.\?!,])/) } # split out punctuation that occurs at the beginning
                  .flatten
                  .map { |i| i.start_with?("{") ? [i] : i.split(/([^\.\?,!\{\}]+[\.\?!,]+)/) } # split out punctuation that does not occur at beginning but is not inside liquid block
@@ -35,6 +35,8 @@ class PartsCollection
           new_link(item)
         elsif item_type == '!'
           new_choice(item)
+        elsif item_type == '&'
+          new_assignment(item)
         else
           raise 'Unknown item type: ' + item_type
         end
@@ -48,13 +50,22 @@ class PartsCollection
     end.flatten
   end
 
+  def new_assignment(item)
+    item_parts = item.split('=')
+    name = item_parts[0]
+    value = item_parts[1]
+    path = JsonPath.new(value)
+    content = path.on(facts.to_json).first
+    { name: name, value: content, type: 'hidden' }
+  end
+
   def new_question(item)
     item_parts = item.split("[")
     name = item_parts.shift.split('=')[0]
     answer = answers[name]
     raise AnswerNotFound, "No Answer found for name: #{name}" unless answer
     answer.merge!(name: name)
-    answer.merge!(value: facts[name]) if facts[name]
+    answer.merge!(value: facts[name]) if facts[name] && facts[name].is_a?(String)
     answer.merge!(extract_attributes(item_parts))
     answer
   end

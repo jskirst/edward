@@ -27,3 +27,26 @@ Feature: JSONPath
     }
     """
 
+  Scenario: Steps can use return data parsed from callout response JSON has hidden value
+    When I send a POST request to "/api/workflows/jsonpath/prompts" with the following:
+    """
+    {
+    "facts": { "hidden": true }
+    }
+    """
+    Then the response status should be "201"
+    And the JSON response should be:
+    """
+    {
+      "token": "jsonpathhidden",
+      "text": "Today's weather is fine.{{&weather=$.weather.days[0].summary}}",
+      "parts": [
+        { "type": "text", "content": "Today's" },
+        { "type": "text", "content": "weather" },
+        { "type": "text", "content": "is" },
+        { "type": "text", "content": "fine." },
+        { "type": "hidden", "name": "weather", "value": "sunny" }
+      ]
+    }
+    """
+
