@@ -25,13 +25,13 @@ class Prompt
     @hsh ||= begin
       hsh = { token: token }
       if @callout_successful
-        Rails.logger.info "Callout successful"
+        Rails.logger.info 'Callout successful'
         hsh.merge!(text: text)
         hsh.merge!(cta: cta) if cta
         hsh.merge!(cta_class: cta_class) if cta_class
         hsh.merge!(cta_href: cta_href) if cta_href
       else
-        Rails.logger.info "Callout not successful"
+        Rails.logger.info 'Callout not successful'
         hsh.merge!(text: callout_failure_text)
         hsh.merge!(cta: callout_failure_cta)
         hsh.merge!(cta_class: cta_class) if cta_class
